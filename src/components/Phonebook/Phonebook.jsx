@@ -3,21 +3,22 @@ import { AddContactForm } from './AddContactForm/AddContactForm';
 
 export class Phonebook extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { name: 'Vlad', phone: '8066' },
+      { name: 'GoPPer', phone: '806633' },
+    ],
     name: '',
   };
 
-  onNewContactSubmit = contact => {
+  onNewContactAdd = contact => {
     console.log(contact);
   };
 
   render() {
-    console.log(this.state.contacts);
-
     return (
       <AddContactForm
         contacts={this.state.contacts}
-        onNewContactSubmit={this.onNewContactSubmit}
+        onNewContactAdd={this.onNewContactAdd}
       />
     );
   }
