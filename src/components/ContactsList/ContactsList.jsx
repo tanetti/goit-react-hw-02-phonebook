@@ -15,17 +15,23 @@ export const ContactsList = ({ contacts, filter, onContactDelete }) => {
         </tr>
       </thead>
       <tbody>
-        {preparedContacts.map(({ id, name, number }) => (
-          <tr key={id}>
-            <td>{name}</td>
-            <td>{number}</td>
-            <td>
-              <button type="button" value={id} onClick={onContactDelete}>
-                X
-              </button>
-            </td>
+        {preparedContacts.length ? (
+          preparedContacts.map(({ id, name, number }) => (
+            <tr key={id}>
+              <td>{name}</td>
+              <td>{number}</td>
+              <td>
+                <button type="button" value={id} onClick={onContactDelete}>
+                  X
+                </button>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td>Nothing found</td>
           </tr>
-        ))}
+        )}
       </tbody>
     </table>
   );
