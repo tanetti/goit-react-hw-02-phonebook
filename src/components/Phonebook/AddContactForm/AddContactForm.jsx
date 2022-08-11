@@ -5,8 +5,9 @@ import { createNewValidationSchema } from './validation';
 export const AddContactForm = ({ contacts, onNewContactAdd }) => {
   const validationSchema = createNewValidationSchema(contacts);
 
-  const onNewContactSubmit = contact => {
-    onNewContactAdd(contact);
+  const onNewContactSubmit = (newContact, actions) => {
+    onNewContactAdd(newContact);
+    actions.resetForm();
   };
 
   return (
@@ -15,19 +16,18 @@ export const AddContactForm = ({ contacts, onNewContactAdd }) => {
         name: '',
       }}
       validationSchema={validationSchema}
-      onSubmit={values => onNewContactSubmit(validationSchema.cast(values))}
+      onSubmit={(values, actions) =>
+        onNewContactSubmit(validationSchema.cast(values), actions)
+      }
     >
-      {({ values, errors, touched }) => (
+      {({ dirty, errors }) => (
         <Form autoComplete="off">
           <label>
             Name:
-            <Field name="name" />
+            <Field name="name" type="text" />
             <ErrorMessage name="name" />
           </label>
-          <button
-            type="submit"
-            disabled={values.name.length === 0 && errors.name && touched.name}
-          >
+          <button type="submit" disabled={!dirty}>
             Add contact
           </button>
         </Form>
