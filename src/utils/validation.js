@@ -1,4 +1,8 @@
 import * as Yup from 'yup';
+import {
+  NAME_VALIDATION_REG_EX,
+  NUMBER_VALIDATION_REG_EX,
+} from 'constants/validationRegEx';
 
 Yup.addMethod(
   Yup.string,
@@ -24,8 +28,16 @@ export const createNewValidationSchema = contacts => {
     name: Yup.string()
       .trim()
       .min(2, 'Minimal lenght - 2')
-      .max(50, 'Minimal lenght - 50')
+      .max(50, 'Maximal lenght - 40')
+      .matches(NAME_VALIDATION_REG_EX, 'Invalid name format')
       .notOneOfInLowercase(existingContactNames, 'Contact already exist')
       .required('Please enter contact name'),
+
+    number: Yup.string()
+      .trim()
+      .matches(NUMBER_VALIDATION_REG_EX, 'Invalid phone number format')
+      .min(8, 'Minimal lenght - 8')
+      .max(20, 'Maximal lenght - 20')
+      .required('Please enter contact phone number'),
   });
 };

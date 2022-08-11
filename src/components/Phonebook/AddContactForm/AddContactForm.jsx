@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { createNewValidationSchema } from './validation';
+import { nanoid } from 'nanoid';
+import { createNewValidationSchema } from 'utils';
 
 export const AddContactForm = ({ contacts, onNewContactAdd }) => {
   const validationSchema = createNewValidationSchema(contacts);
 
   const onNewContactSubmit = (newContact, actions) => {
-    onNewContactAdd(newContact);
+    onNewContactAdd({ id: nanoid(14), ...newContact });
     actions.resetForm();
   };
 
@@ -14,18 +15,24 @@ export const AddContactForm = ({ contacts, onNewContactAdd }) => {
     <Formik
       initialValues={{
         name: '',
+        number: '',
       }}
       validationSchema={validationSchema}
       onSubmit={(values, actions) =>
         onNewContactSubmit(validationSchema.cast(values), actions)
       }
     >
-      {({ dirty, errors }) => (
+      {({ dirty }) => (
         <Form autoComplete="off">
           <label>
             Name:
-            <Field name="name" type="text" />
+            <Field name="name" placeholder="Enter contact name" type="text" />
             <ErrorMessage name="name" />
+          </label>
+          <label>
+            Phone number:
+            <Field name="number" placeholder="Enter phone number" type="tel" />
+            <ErrorMessage name="number" />
           </label>
           <button type="submit" disabled={!dirty}>
             Add contact
