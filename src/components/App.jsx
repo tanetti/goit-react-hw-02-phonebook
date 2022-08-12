@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { GlobalStyles } from 'components/GlobalStyles/GlobalStyles';
+import { Box } from 'components/Shared';
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { Section, Container } from 'components/Shared';
 import {
@@ -95,16 +96,18 @@ export class App extends Component {
 
         <main>
           <PageTitle title="My awesome phonebook" />
-          <Section>
-            <Container>
-              <SectionTitle>Phonebook</SectionTitle>
-              <ContactsList
-                contacts={this.state.contacts}
-                filter={this.state.filter}
-                onContactDelete={this.onContactDelete}
-              />
-            </Container>
-          </Section>
+          <Box pt="70px">
+            <Section>
+              <Container>
+                <SectionTitle>Phonebook</SectionTitle>
+                <ContactsList
+                  contacts={this.state.contacts}
+                  filter={this.state.filter}
+                  onContactDelete={this.onContactDelete}
+                />
+              </Container>
+            </Section>
+          </Box>
         </main>
       </>
     );

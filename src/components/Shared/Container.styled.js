@@ -9,8 +9,7 @@ export const Container = styled.div`
     margin-right: auto;
   }
 
-  @media screen and (min-width: ${({ theme }) =>
-      theme.breakPoints.desktopMin}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktopMin}) {
     width: ${({ theme }) => theme.breakPoints.desktopMin};
   }
 

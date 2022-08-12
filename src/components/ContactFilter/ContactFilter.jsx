@@ -1,5 +1,10 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
+import {
+  FilterContainer,
+  FilterField,
+  SearchIcon,
+} from './ContactFilter.styled';
 
 export class ContactFilter extends Component {
   state = {
@@ -17,13 +22,17 @@ export class ContactFilter extends Component {
 
   render() {
     return (
-      <input
-        type="text"
-        name="filter"
-        placeholder="Search..."
-        value={this.state.filterValue}
-        onChange={this.setFilterValue}
-      />
+      <FilterContainer>
+        <FilterField
+          type="text"
+          name="filter"
+          aria-label="Phonebook filter"
+          placeholder="Search contact..."
+          value={this.state.filterValue}
+          onChange={this.setFilterValue}
+        />
+        <SearchIcon size="18" />
+      </FilterContainer>
     );
   }
 }

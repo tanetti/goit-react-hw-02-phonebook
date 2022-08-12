@@ -10,10 +10,21 @@ export const SectionTitle = styled.h2`
 `;
 
 export const StyledHeader = styled.header`
+  position: fixed;
+
   display: flex;
   justify-content: center;
 
-  padding: ${({ theme }) => theme.space[4]} ${({ theme }) => theme.space[0]};
+  width: 100vw;
+  padding: ${({ theme }) => theme.space[4]};
+
+  background-color: ${({ theme }) => theme.colors.lightTransparentBG};
+  backdrop-filter: blur(4px);
+
+  border-bottom: ${({ theme }) => theme.borders.light};
+
+  box-shadow: ${({ theme }) => theme.shadows.generic};
+
 `;
 
 export const AddContactButton = styled.button`
@@ -29,19 +40,28 @@ export const AddContactButton = styled.button`
   color: ${({ theme }) => theme.colors.whiteBG};
   background-color: ${({ theme }) => theme.colors.addButtonBG};
 
-  border-width: ${({ theme }) => theme.space[0]};
+  border: ${({ theme }) => theme.borders.generic};
   border-radius: ${({ theme }) => theme.radii.generic};
 
   box-shadow: ${({ theme }) => theme.shadows.generic};
 
   cursor: pointer;
+  outline: transparent;
 
-  transition: ${({ theme }) => theme.transitions.backgroundColor},
-    ${({ theme }) => theme.transitions.transform};
+  transition: ${({ theme }) => theme.transitions.color},
+    ${({ theme }) => theme.transitions.backgroundColor},
+    ${({ theme }) => theme.transitions.transform},
+    ${({ theme }) => theme.transitions.borderColor},
+    ${({ theme }) => theme.transitions.boxShadow};
 
   &:hover,
   &:focus {
+    color: ${({ theme }) => theme.colors.addButtonHovered};
     background-color: ${({ theme }) => theme.colors.addButtonHoveredBG};
+
+    border: ${({ theme }) => theme.borders.genericHovered};
+
+    box-shadow: ${({ theme }) => theme.shadows.genericHovered};
 
     transform: scale(1.1);
   }

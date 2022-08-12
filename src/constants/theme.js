@@ -11,8 +11,15 @@ export const theme = Object.freeze({
     lightBG: '#eee',
     whiteBG: '#fff',
 
+    lightTransparentBG: '#eeeeee80',
+
+    addButtonHovered: '#f7f7f7',
+
     addButtonBG: '#2c9403',
     addButtonHoveredBG: '#297a09',
+
+    searchIcon: '#888',
+    searchIconHovered: '#212121',
   },
   space: [0, '2px', '4px', '8px', '16px', '32px', '64px', '128px', '256px'],
   sizes: {},
@@ -30,16 +37,20 @@ export const theme = Object.freeze({
     bold: 700,
   },
   borders: {
-    generic: '1px solid #ccc',
+    light: '1px solid #aaa',
+    generic: '1px solid #888',
+    genericHovered: '1px solid #212121',
   },
   radii: {
     none: '0',
-    generic: '6px',
+    generic: '8px',
     round: '50%',
   },
   shadows: {
     generic:
       '0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16)',
+    genericHovered:
+      '0px 1px 1px rgba(0, 0, 0, 0.22), 0px 4px 4px rgba(0, 0, 0, 0.16), 1px 4px 6px rgba(0, 0, 0, 0.26)',
     text: '0px 0px 10px rgba(0, 0, 0, 1)',
   },
   breakPoints: {
@@ -57,6 +68,10 @@ export const theme = Object.freeze({
 
     color: `color ${transitionDuration}ms ${transitionFunction}`,
     backgroundColor: `background-color ${transitionDuration}ms ${transitionFunction}`,
+    borderColor: `border-color ${transitionDuration}ms ${transitionFunction}`,
+
+    boxShadow: `box-shadow ${transitionDuration}ms ${transitionFunction}`,
+
     transform: `transform ${transitionDuration}ms ${transitionFunction}`,
   },
 });
