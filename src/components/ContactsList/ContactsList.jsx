@@ -27,9 +27,13 @@ export const ContactsList = ({ contacts, filter, onContactDelete }) => {
               </td>
             </tr>
           ))
+        ) : filter ? (
+          <tr>
+            <td>Nothing was found</td>
+          </tr>
         ) : (
           <tr>
-            <td>Nothing found</td>
+            <td>Phonebook is empty</td>
           </tr>
         )}
       </tbody>

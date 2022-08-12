@@ -22,7 +22,7 @@ export const AddContactForm = ({ contacts, onNewContactAdd }) => {
         onNewContactSubmit(validationSchema.cast(values), actions)
       }
     >
-      {({ dirty }) => (
+      {({ values }) => (
         <Form autoComplete="off">
           <label>
             Name:
@@ -34,7 +34,7 @@ export const AddContactForm = ({ contacts, onNewContactAdd }) => {
             <Field name="number" placeholder="Enter phone number" type="tel" />
             <ErrorMessage name="number" />
           </label>
-          <button type="submit" disabled={!dirty}>
+          <button type="submit" disabled={!values.name || !values.number}>
             Add contact
           </button>
         </Form>
