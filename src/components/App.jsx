@@ -2,7 +2,13 @@ import { Component } from 'react';
 import { GlobalStyles } from 'components/GlobalStyles/GlobalStyles';
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { Section, Container } from 'components/Shared';
-import { SectionTitle } from 'components/App.styled';
+import {
+  StyledHeader,
+  AddUserIcon,
+  AddContactButton,
+  Backdrop,
+  SectionTitle,
+} from 'components/App.styled';
 import { ContactFilter } from 'components/ContactFilter/ContactFilter';
 import { AddContactForm } from 'components/AddContactForm/AddContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
@@ -17,6 +23,24 @@ export class App extends Component {
       { id: 'id-5', name: 'Dudka Volodymyr', number: '+38(066) 33-445-99' },
     ],
     filter: '',
+
+    shouldAddFormRender: false,
+    shouldAddFormShown: false,
+  };
+
+  toggleRenderAddForm = () => {
+    this.setState(prevState => {
+      if (!prevState.shouldAddFormRender) {
+        setTimeout(this.showAddForm, 0);
+        return { shouldAddFormRender: true };
+      }
+
+      return { shouldAddFormShown: !prevState.shouldAddFormShown };
+    });
+  };
+
+  showAddForm = () => {
+    this.setState({ shouldAddFormShown: true });
   };
 
   onNewContactAdd = newContact => {
@@ -45,14 +69,30 @@ export class App extends Component {
     return (
       <>
         <GlobalStyles />
-        <header>
-          <button type="button">Add contact</button>
+
+        <StyledHeader>
+          <AddContactButton
+            type="button"
+            aria-label="Add new contact"
+            aria-controls="contact-form"
+            aria-expanded={false}
+            onClick={this.toggleRenderAddForm}
+          >
+            <AddUserIcon size={28} />
+          </AddContactButton>
           <ContactFilter onFilterChange={this.onFilterChange} />
-          <AddContactForm
-            contacts={this.state.contacts}
-            onNewContactAdd={this.onNewContactAdd}
-          />
-        </header>
+
+          {this.state.shouldAddFormRender && (
+            <Backdrop shouldShown={this.state.shouldAddFormShown}>
+              <AddContactForm
+                id="contact-form"
+                contacts={this.state.contacts}
+                onNewContactAdd={this.onNewContactAdd}
+              />
+            </Backdrop>
+          )}
+        </StyledHeader>
+
         <main>
           <PageTitle title="My awesome phonebook" />
           <Section>

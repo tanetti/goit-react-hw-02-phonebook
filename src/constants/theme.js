@@ -1,3 +1,6 @@
+const transitionDuration = 250;
+const transitionFunction = 'ease-out';
+
 export const theme = Object.freeze({
   colors: {
     darkText: '#212121',
@@ -7,6 +10,9 @@ export const theme = Object.freeze({
     darkBG: '#ddd',
     lightBG: '#eee',
     whiteBG: '#fff',
+
+    addButtonBG: '#2c9403',
+    addButtonHoveredBG: '#297a09',
   },
   space: [0, '2px', '4px', '8px', '16px', '32px', '64px', '128px', '256px'],
   sizes: {},
@@ -45,5 +51,12 @@ export const theme = Object.freeze({
     desctopMax: '1679.98px',
     bigMin: '1680px',
   },
-  transitions: {},
+  transitions: {
+    opacity: `opacity ${transitionDuration}ms ${transitionFunction}`,
+    visibility: `visibility ${transitionDuration}ms ${transitionFunction}`,
+
+    color: `color ${transitionDuration}ms ${transitionFunction}`,
+    backgroundColor: `background-color ${transitionDuration}ms ${transitionFunction}`,
+    transform: `transform ${transitionDuration}ms ${transitionFunction}`,
+  },
 });
