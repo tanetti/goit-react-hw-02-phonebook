@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
+import { theme } from 'constants/theme';
 import {
   FilterContainer,
   FilterField,
-  SearchIcon,
+  FilterIcon,
 } from './ContactFilter.styled';
 
 export class ContactFilter extends Component {
@@ -27,11 +28,11 @@ export class ContactFilter extends Component {
           type="text"
           name="filter"
           aria-label="Phonebook filter"
-          placeholder="Search contact..."
+          placeholder="Contact search..."
           value={this.state.filterValue}
           onChange={this.setFilterValue}
         />
-        <SearchIcon size="18" />
+        <FilterIcon size={theme.sizes.filterIcon} />
       </FilterContainer>
     );
   }

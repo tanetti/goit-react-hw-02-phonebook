@@ -1,21 +1,15 @@
 import styled from 'styled-components';
 import { FaUserPlus } from 'react-icons/fa';
 
-export const SectionTitle = styled.h2`
-  margin: ${({ theme }) => theme.space[0]};
-
-  font-size: ${({ theme }) => theme.fontSizes.l};
-  text-align: center;
-  text-transform: uppercase;
-`;
-
 export const StyledHeader = styled.header`
   position: fixed;
 
   display: flex;
   justify-content: center;
+  align-items: center;
 
   width: 100vw;
+  height: ${({ theme }) => theme.sizes.headerH};
   padding: ${({ theme }) => theme.space[4]};
 
   background-color: ${({ theme }) => theme.colors.lightTransparentBG};
@@ -24,7 +18,6 @@ export const StyledHeader = styled.header`
   border-bottom: ${({ theme }) => theme.borders.light};
 
   box-shadow: ${({ theme }) => theme.shadows.generic};
-
 `;
 
 export const AddContactButton = styled.button`
@@ -32,6 +25,7 @@ export const AddContactButton = styled.button`
   justify-content: center;
   align-items: center;
 
+  height: ${({ theme }) => theme.sizes.filterFieldH};
   margin-right: ${({ theme }) => theme.space[4]};
   padding: ${({ theme }) => theme.space[2]};
   padding-left: ${({ theme }) => theme.space[3]};
@@ -67,7 +61,7 @@ export const AddContactButton = styled.button`
   }
 `;
 
-export const AddUserIcon = styled(FaUserPlus)`
+export const AddContactIcon = styled(FaUserPlus)`
   fill: currentColor;
 `;
 
@@ -85,4 +79,13 @@ export const Backdrop = styled.div`
 
   transition: ${({ theme }) => theme.transitions.opacity},
     ${({ theme }) => theme.transitions.visibility};
+`;
+
+export const SectionTitle = styled.h2`
+  margin: ${({ theme }) => theme.space[0]};
+  margin-bottom: ${({ theme }) => theme.space[5]};
+
+  font-size: ${({ theme }) => theme.fontSizes.l};
+  text-align: center;
+  text-transform: uppercase;
 `;

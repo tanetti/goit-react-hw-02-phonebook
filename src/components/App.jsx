@@ -1,11 +1,12 @@
 import { Component } from 'react';
 import { GlobalStyles } from 'components/GlobalStyles/GlobalStyles';
+import { theme } from 'constants/theme';
 import { Box } from 'components/Shared';
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { Section, Container } from 'components/Shared';
 import {
   StyledHeader,
-  AddUserIcon,
+  AddContactIcon,
   AddContactButton,
   Backdrop,
   SectionTitle,
@@ -79,7 +80,7 @@ export class App extends Component {
             aria-expanded={false}
             onClick={this.toggleRenderAddForm}
           >
-            <AddUserIcon size={28} />
+            <AddContactIcon size={theme.sizes.addContactIcon} />
           </AddContactButton>
           <ContactFilter onFilterChange={this.onFilterChange} />
 
@@ -96,7 +97,7 @@ export class App extends Component {
 
         <main>
           <PageTitle title="My awesome phonebook" />
-          <Box pt="70px">
+          <Box pt={theme.sizes.headerH}>
             <Section>
               <Container>
                 <SectionTitle>Phonebook</SectionTitle>

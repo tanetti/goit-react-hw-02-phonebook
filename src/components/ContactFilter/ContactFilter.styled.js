@@ -4,7 +4,9 @@ import { FaSearch } from 'react-icons/fa';
 export const FilterContainer = styled.label`
   position: relative;
 
-  color: ${({ theme }) => theme.colors.searchIcon};
+  height: ${({ theme }) => theme.sizes.filterFieldH};
+
+  color: ${({ theme }) => theme.colors.filterIcon};
 
   cursor: text;
 
@@ -13,13 +15,15 @@ export const FilterContainer = styled.label`
 
   &:focus-within,
   &:hover {
-    color: ${({ theme }) => theme.colors.searchIconHovered};
+    color: ${({ theme }) => theme.colors.filterIconHovered};
 
     transform: scale(1.05);
   }
 `;
 
 export const FilterField = styled.input`
+  width: ${({ theme }) => theme.sizes.filterFieldW};
+  height: 100%;
   padding: ${({ theme }) => theme.space[3]} ${({ theme }) => theme.space[4]};
   padding-left: ${({ theme }) => theme.space[5]};
 
@@ -40,7 +44,7 @@ export const FilterField = styled.input`
   }
 `;
 
-export const SearchIcon = styled(FaSearch)`
+export const FilterIcon = styled(FaSearch)`
   position: absolute;
   top: 50%;
   left: ${({ theme }) => theme.space[3]};

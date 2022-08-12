@@ -18,11 +18,19 @@ export const theme = Object.freeze({
     addButtonBG: '#2c9403',
     addButtonHoveredBG: '#297a09',
 
-    searchIcon: '#888',
-    searchIconHovered: '#212121',
+    filterIcon: '#888',
+    filterIconHovered: '#212121',
   },
   space: [0, '2px', '4px', '8px', '16px', '32px', '64px', '128px', '256px'],
-  sizes: {},
+  sizes: {
+    headerH: '70px',
+
+    filterFieldW: '230px',
+    filterFieldH: '38px',
+
+    addContactIcon: '26px',
+    filterIcon: '18px',
+  },
   fontSizes: {
     xs: '12px',
     s: '14px',
