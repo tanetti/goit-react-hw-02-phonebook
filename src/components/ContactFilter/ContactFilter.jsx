@@ -16,12 +16,42 @@ export class ContactFilter extends Component {
     this.props.onFilterChange(filterValue);
   };
 
-  setFilterValue = ({ currentTarget }) => {
-    this.setState({ filterValue: currentTarget.value });
-    this.updateRootState(currentTarget.value);
+  setFilterValue = incoming => {
+    let value = null;
+
+    switch (typeof incoming) {
+      case 'object':
+        value = incoming.currentTarget.value;
+        break;
+
+      case 'string':
+        value = incoming;
+        break;
+
+      default:
+        return;
+    }
+
+    this.setState({ filterValue: value });
+    this.updateRootState(value);
+  };
+
+  onEscPress = ({ code }) => {
+    if (code !== 'Escape') return;
+
+    this.setFilterValue('');
+  };
+
+  addEscListener = () => {
+    if (onkeydown && onkeydown !== this.onEscPress) return;
+    if (!this.state.filterValue) return (onkeydown = null);
+
+    onkeydown = this.onEscPress;
   };
 
   render() {
+    this.addEscListener();
+
     return (
       <FilterContainer>
         <FilterField
@@ -39,5 +69,6 @@ export class ContactFilter extends Component {
 }
 
 ContactFilter.propTypes = {
+  filterValue: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
 };

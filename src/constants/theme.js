@@ -11,6 +11,8 @@ export const theme = Object.freeze({
     lightBG: '#eee',
     whiteBG: '#fff',
 
+    backdropBG: '#ffffff80',
+
     lightTransparentBG: '#eeeeee80',
 
     addButtonHovered: '#f7f7f7',

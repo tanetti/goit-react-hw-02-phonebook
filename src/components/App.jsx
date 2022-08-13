@@ -30,12 +30,15 @@ export class App extends Component {
     shouldAddFormShown: false,
   };
 
-  toggleRenderAddForm = () => {
+  toggleAddForm = () => {
     this.setState(prevState => {
       if (!prevState.shouldAddFormRender) {
         setTimeout(this.showAddForm, 0);
+        onkeydown = this.onEscPress;
         return { shouldAddFormRender: true };
       }
+
+      onkeydown = prevState.shouldAddFormShown ? null : this.onEscPress;
 
       return { shouldAddFormShown: !prevState.shouldAddFormShown };
     });
@@ -43,6 +46,15 @@ export class App extends Component {
 
   showAddForm = () => {
     this.setState({ shouldAddFormShown: true });
+  };
+
+  onBackdropClick = ({ currentTarget, target }) =>
+    currentTarget === target && this.toggleAddForm();
+
+  onEscPress = ({ code }) => {
+    if (code !== 'Escape') return;
+
+    this.toggleAddForm();
   };
 
   onNewContactAdd = newContact => {
@@ -74,27 +86,33 @@ export class App extends Component {
 
         <header>
           <HeaderContainer>
-            <ContactFilter onFilterChange={this.onFilterChange} />
+            <ContactFilter
+              filterValue={this.state.filter}
+              onFilterChange={this.onFilterChange}
+            />
             <AddContactButton
               type="button"
               aria-label="Add new contact"
               aria-controls="contact-form"
               aria-expanded={false}
-              onClick={this.toggleRenderAddForm}
+              onClick={this.toggleAddForm}
             >
               <AddContactIcon size={theme.sizes.addContactIcon} />
             </AddContactButton>
-
-            {this.state.shouldAddFormRender && (
-              <Backdrop shouldShown={this.state.shouldAddFormShown}>
-                <AddContactForm
-                  id="contact-form"
-                  contacts={this.state.contacts}
-                  onNewContactAdd={this.onNewContactAdd}
-                />
-              </Backdrop>
-            )}
           </HeaderContainer>
+
+          {this.state.shouldAddFormRender && (
+            <Backdrop
+              shouldShown={this.state.shouldAddFormShown}
+              onClick={this.onBackdropClick}
+            >
+              <AddContactForm
+                id="contact-form"
+                contacts={this.state.contacts}
+                onNewContactAdd={this.onNewContactAdd}
+              />
+            </Backdrop>
+          )}
         </header>
 
         <main>

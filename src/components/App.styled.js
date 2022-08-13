@@ -3,6 +3,7 @@ import { FaUserPlus } from 'react-icons/fa';
 
 export const HeaderContainer = styled.header`
   position: fixed;
+  z-index: 100;
 
   display: flex;
   justify-content: center;
@@ -67,9 +68,13 @@ export const Backdrop = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 100;
 
   width: 100vw;
   height: 100vh;
+
+  background-color: ${({ theme }) => theme.colors.backdropBG};
+  backdrop-filter: blur(4px);
 
   opacity: ${({ shouldShown }) => (shouldShown ? 1 : 0)};
   visibility: ${({ shouldShown }) => (shouldShown ? 'initial' : 'hidden')};
