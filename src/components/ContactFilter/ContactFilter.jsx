@@ -37,7 +37,6 @@ export class ContactFilter extends Component {
   };
 
   onEscPress = ({ code }) => {
-    console.log('Filter ', code);
     if (code !== 'Escape') return;
 
     this.setFilterValue('');
@@ -72,6 +71,5 @@ export class ContactFilter extends Component {
 }
 
 ContactFilter.propTypes = {
-  filterValue: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
 };

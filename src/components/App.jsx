@@ -52,7 +52,6 @@ export class App extends Component {
     currentTarget === target && this.toggleAddForm();
 
   onEscPress = ({ code }) => {
-    console.log('Modal ', code);
     if (code !== 'Escape') return;
 
     this.toggleAddForm();
@@ -87,10 +86,7 @@ export class App extends Component {
 
         <header>
           <HeaderContainer>
-            <ContactFilter
-              filterValue={this.state.filter}
-              onFilterChange={this.onFilterChange}
-            />
+            <ContactFilter onFilterChange={this.onFilterChange} />
             <AddContactButton
               type="button"
               aria-label="Add new contact"
@@ -110,7 +106,9 @@ export class App extends Component {
               <AddContactForm
                 id="contact-form"
                 contacts={this.state.contacts}
+                shouldShown={this.state.shouldAddFormShown}
                 onNewContactAdd={this.onNewContactAdd}
+                onCancel={this.toggleAddForm}
               />
             </Backdrop>
           )}

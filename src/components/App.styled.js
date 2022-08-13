@@ -65,13 +65,18 @@ export const AddContactIcon = styled(FaUserPlus)`
 `;
 
 export const Backdrop = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
 
-  width: 100vw;
-  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  padding: ${({ theme }) => theme.space[4]};
 
   background-color: ${({ theme }) => theme.colors.backdropBG};
   backdrop-filter: blur(4px);
@@ -79,6 +84,8 @@ export const Backdrop = styled.div`
   opacity: ${({ shouldShown }) => (shouldShown ? 1 : 0)};
   visibility: ${({ shouldShown }) => (shouldShown ? 'initial' : 'hidden')};
   pointer-events: ${({ shouldShown }) => (shouldShown ? 'initial' : 'none')};
+
+  overflow: hidden;
 
   transition: ${({ theme }) => theme.transitions.opacity},
     ${({ theme }) => theme.transitions.visibility};

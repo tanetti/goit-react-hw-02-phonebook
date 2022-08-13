@@ -8,10 +8,10 @@ export const theme = Object.freeze({
     whiteText: '#fff',
 
     darkBG: '#ddd',
-    lightBG: '#eee',
+    lightBG: '#f6f6f6',
     whiteBG: '#fff',
 
-    backdropBG: '#ffffff80',
+    backdropBG: '#5e5e5ea0',
 
     lightTransparentBG: '#eeeeee80',
 
@@ -62,6 +62,12 @@ export const theme = Object.freeze({
     deleteButtonIcon: '30px',
 
     noResultIcon: '26px',
+
+    addFormMin: '290px',
+    addFormMax: '450px',
+
+    addFormFieldW: '100%',
+    addFormFieldH: '38px',
   },
 
   fontSizes: {
@@ -120,6 +126,8 @@ export const theme = Object.freeze({
     boxShadow: `box-shadow ${transitionDuration}ms ${transitionFunction}`,
 
     transform: `transform ${transitionDuration}ms ${transitionFunction}`,
+
+    font: `font ${transitionDuration}ms ${transitionFunction}`,
 
     contactButtonsBackwardOpacity: `opacity ${transitionDuration}ms ${transitionFunction} ${
       transitionDuration / 2
