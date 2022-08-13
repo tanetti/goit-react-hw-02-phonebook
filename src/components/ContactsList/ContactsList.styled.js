@@ -56,7 +56,6 @@ export const SortByNameButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  /* width: ${({ theme }) => theme.sizes.sortButton}; */
   height: ${({ theme }) => theme.sizes.sortButton};
 
   color: ${({ theme }) => theme.colors.whiteText};
@@ -89,7 +88,6 @@ export const SortByPhoneButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  /* width: ${({ theme }) => theme.sizes.sortButton}; */
   height: ${({ theme }) => theme.sizes.sortButton};
 
   color: ${({ theme }) => theme.colors.lightText};

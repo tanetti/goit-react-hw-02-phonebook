@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaUserPlus } from 'react-icons/fa';
 
-export const StyledHeader = styled.header`
+export const HeaderContainer = styled.header`
   position: fixed;
 
   display: flex;

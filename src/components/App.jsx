@@ -5,7 +5,7 @@ import { Box } from 'components/Shared';
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { Section, Container } from 'components/Shared';
 import {
-  StyledHeader,
+  HeaderContainer,
   AddContactIcon,
   AddContactButton,
   Backdrop,
@@ -72,28 +72,30 @@ export class App extends Component {
       <>
         <GlobalStyles />
 
-        <StyledHeader>
-          <AddContactButton
-            type="button"
-            aria-label="Add new contact"
-            aria-controls="contact-form"
-            aria-expanded={false}
-            onClick={this.toggleRenderAddForm}
-          >
-            <AddContactIcon size={theme.sizes.addContactIcon} />
-          </AddContactButton>
-          <ContactFilter onFilterChange={this.onFilterChange} />
+        <header>
+          <HeaderContainer>
+            <AddContactButton
+              type="button"
+              aria-label="Add new contact"
+              aria-controls="contact-form"
+              aria-expanded={false}
+              onClick={this.toggleRenderAddForm}
+            >
+              <AddContactIcon size={theme.sizes.addContactIcon} />
+            </AddContactButton>
+            <ContactFilter onFilterChange={this.onFilterChange} />
 
-          {this.state.shouldAddFormRender && (
-            <Backdrop shouldShown={this.state.shouldAddFormShown}>
-              <AddContactForm
-                id="contact-form"
-                contacts={this.state.contacts}
-                onNewContactAdd={this.onNewContactAdd}
-              />
-            </Backdrop>
-          )}
-        </StyledHeader>
+            {this.state.shouldAddFormRender && (
+              <Backdrop shouldShown={this.state.shouldAddFormShown}>
+                <AddContactForm
+                  id="contact-form"
+                  contacts={this.state.contacts}
+                  onNewContactAdd={this.onNewContactAdd}
+                />
+              </Backdrop>
+            )}
+          </HeaderContainer>
+        </header>
 
         <main>
           <PageTitle title="My awesome phonebook" />
