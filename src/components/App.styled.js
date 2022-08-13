@@ -40,7 +40,6 @@ export const AddContactButton = styled.button`
   box-shadow: ${({ theme }) => theme.shadows.generic};
 
   cursor: pointer;
-  outline: transparent;
 
   transition: ${({ theme }) => theme.transitions.color},
     ${({ theme }) => theme.transitions.backgroundColor},

@@ -151,33 +151,6 @@ export const TableDataCell = styled.td`
   }
 `;
 
-export const PhoneLink = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: ${({ theme }) => theme.sizes.callButton};
-  height: ${({ theme }) => theme.sizes.callButton};
-
-  color: ${({ theme }) => theme.colors.phoneIcon};
-
-  text-decoration: none;
-
-  transition: ${({ theme }) => theme.transitions.color},
-    ${({ theme }) => theme.transitions.transform};
-
-  &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.colors.phoneIconHovered};
-
-    transform: scale(1.2);
-  }
-`;
-
-export const PhoneIcon = styled(FaPhoneAlt)`
-  fill: currentColor;
-`;
-
 export const DeleteButton = styled.button`
   display: flex;
   justify-content: center;
@@ -205,6 +178,35 @@ export const DeleteButton = styled.button`
 `;
 
 export const DeleteIcon = styled(FaTimes)`
+  fill: currentColor;
+`;
+
+export const PhoneLink = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: ${({ theme }) => theme.sizes.callButton};
+  height: ${({ theme }) => theme.sizes.callButton};
+
+  color: ${({ theme }) => theme.colors.phoneIcon};
+
+  text-decoration: none;
+
+  outline-offset: -1px;
+
+  transition: ${({ theme }) => theme.transitions.color},
+    ${({ theme }) => theme.transitions.transform};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.phoneIconHovered};
+
+    transform: scale(1.2);
+  }
+`;
+
+export const PhoneIcon = styled(FaPhoneAlt)`
   fill: currentColor;
 `;
 
