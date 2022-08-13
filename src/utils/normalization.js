@@ -18,3 +18,14 @@ export const normalizeFilterValue = filterValue => {
 
   return prenormalizedFilterValue;
 };
+
+export const normalizeNumberForCallLink = number =>
+  number
+    .split('')
+    .map(
+      numSymb =>
+        (((!isNaN(numSymb) && numSymb !== ' ') || numSymb === '+') &&
+          numSymb) ||
+        null
+    )
+    .join('');

@@ -20,8 +20,23 @@ export const theme = Object.freeze({
 
     filterIcon: '#888',
     filterIconHovered: '#212121',
+
+    tableHead: '#11c2bc',
+    tableRowLight: '#f8f8f8',
+    tableRowLightHovered: '#dadada',
+    tableRowDark: '#eaeaea',
+    tableRowDarkHovered: '#cfcfcf',
+
+    phoneIcon: '#2c9403',
+    phoneIconHovered: '#297a09',
+
+    deleteButtonIcon: '#db1212',
+    deleteButtonIconHovered: '#ba0b0b',
+    deleteButtonBG: 'transparent',
   },
+
   space: [0, '2px', '4px', '8px', '16px', '32px', '64px', '128px', '256px'],
+
   sizes: {
     headerH: '70px',
 
@@ -29,8 +44,20 @@ export const theme = Object.freeze({
     filterFieldH: '38px',
 
     addContactIcon: '26px',
-    filterIcon: '18px',
+    filterIcon: '20px',
+
+    contactsTableMin: '290px',
+    contactsTableMax: '520px',
+
+    callButton: '30px',
+    callButtonIcon: '22px',
+
+    deleteButton: '30px',
+    deleteButtonIcon: '28px',
+
+    noResultIcon: '26px',
   },
+
   fontSizes: {
     xs: '12px',
     s: '14px',
@@ -39,21 +66,25 @@ export const theme = Object.freeze({
     xl: '26px',
     xxl: '32px',
   },
+
   fontWeights: {
     normal: 400,
     semiBold: 600,
     bold: 700,
   },
+
   borders: {
     light: '1px solid #aaa',
     generic: '1px solid #888',
     genericHovered: '1px solid #212121',
   },
+
   radii: {
     none: '0',
     generic: '8px',
     round: '50%',
   },
+
   shadows: {
     generic:
       '0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16)',
@@ -61,6 +92,7 @@ export const theme = Object.freeze({
       '0px 1px 1px rgba(0, 0, 0, 0.22), 0px 4px 4px rgba(0, 0, 0, 0.16), 1px 4px 6px rgba(0, 0, 0, 0.26)',
     text: '0px 0px 10px rgba(0, 0, 0, 1)',
   },
+
   breakPoints: {
     midMin: '480px',
     midMax: '767.98px',
@@ -70,6 +102,7 @@ export const theme = Object.freeze({
     desctopMax: '1679.98px',
     bigMin: '1680px',
   },
+
   transitions: {
     opacity: `opacity ${transitionDuration}ms ${transitionFunction}`,
     visibility: `visibility ${transitionDuration}ms ${transitionFunction}`,

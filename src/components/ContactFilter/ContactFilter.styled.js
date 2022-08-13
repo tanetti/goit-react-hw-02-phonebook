@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaSearch } from 'react-icons/fa';
+import { FaSistrix } from 'react-icons/fa';
 
 export const FilterContainer = styled.label`
   position: relative;
@@ -44,7 +44,7 @@ export const FilterField = styled.input`
   }
 `;
 
-export const FilterIcon = styled(FaSearch)`
+export const FilterIcon = styled(FaSistrix)`
   position: absolute;
   top: 50%;
   left: ${({ theme }) => theme.space[3]};

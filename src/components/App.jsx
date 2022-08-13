@@ -51,7 +51,7 @@ export class App extends Component {
     }));
   };
 
-  onContactDelete = ({ target: { value: contactID } }) => {
+  onContactDelete = ({ currentTarget: { value: contactID } }) => {
     this.setState(prevState => {
       const cuttedContacts = [];
 
