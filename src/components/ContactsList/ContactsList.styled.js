@@ -203,24 +203,30 @@ export const TableDataCell = styled.td`
 export const NameDataContainer = styled.span`
   display: block;
 
-  transition: ${({ theme }) => theme.transitions.transform};
+  transition: ${({ theme }) => theme.transitions.contactDataBackwardTransform};
 
   transform: translateX(-30px);
 
-  ${TableDataRow}:hover & {
-    transform: translateX(-10px);
+  ${TableDataRow}:hover &,
+  ${TableDataRow}:focus-within & {
+    transition: ${({ theme }) => theme.transitions.transform};
+
+    transform: translateX(-15px);
   }
 `;
 
 export const NumberDataContainer = styled.span`
   display: block;
 
-  transition: ${({ theme }) => theme.transitions.transform};
+  transition: ${({ theme }) => theme.transitions.contactDataBackwardTransform};
 
   transform: translateX(30px);
 
-  ${TableDataRow}:hover & {
-    transform: translateX(10px);
+  ${TableDataRow}:hover &,
+  ${TableDataRow}:focus-within & {
+    transition: ${({ theme }) => theme.transitions.transform};
+
+    transform: translateX(15px);
   }
 `;
 
@@ -239,25 +245,33 @@ export const DeleteButton = styled.button`
 
   cursor: pointer;
 
+  outline-offset: -1px;
   opacity: 0;
 
-  transform: translateX(-110%);
+  transform: scale(0.5);
 
   transition: ${({ theme }) => theme.transitions.color},
     ${({ theme }) => theme.transitions.opacity},
     ${({ theme }) => theme.transitions.transform};
 
   ${TableDataRow}:hover &,
-  &:focus {
+  ${TableDataRow}:focus-within & {
     opacity: 1;
 
-    transform: translateX(0);
+    transform: scale(1);
+
+    transition: ${({ theme }) => theme.transitions.color},
+      ${({ theme }) => theme.transitions.contactButtonsBackwardOpacity},
+      ${({ theme }) => theme.transitions.contactDataBackwardTransform};
 
     &:hover,
     &:focus {
       color: ${({ theme }) => theme.colors.deleteButtonIconHovered};
 
       transform: scale(1.2);
+
+      transition: ${({ theme }) => theme.transitions.color},
+        ${({ theme }) => theme.transitions.transform};
     }
   }
 `;
@@ -281,23 +295,30 @@ export const CallLink = styled.a`
   outline-offset: -1px;
   opacity: 0;
 
-  transform: translateX(110%);
+  transform: scale(0.5);
 
   transition: ${({ theme }) => theme.transitions.color},
     ${({ theme }) => theme.transitions.opacity},
     ${({ theme }) => theme.transitions.transform};
 
   ${TableDataRow}:hover &,
-  &:focus {
+  ${TableDataRow}:focus-within & {
     opacity: 1;
 
-    transform: translateX(0);
+    transform: scale(1);
+
+    transition: ${({ theme }) => theme.transitions.color},
+      ${({ theme }) => theme.transitions.contactButtonsBackwardOpacity},
+      ${({ theme }) => theme.transitions.contactDataBackwardTransform};
 
     &:hover,
     &:focus {
       color: ${({ theme }) => theme.colors.callLinkIconHovered};
 
       transform: scale(1.2);
+
+      transition: ${({ theme }) => theme.transitions.color},
+        ${({ theme }) => theme.transitions.transform};
     }
   }
 `;

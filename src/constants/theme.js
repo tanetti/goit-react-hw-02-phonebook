@@ -118,5 +118,12 @@ export const theme = Object.freeze({
     boxShadow: `box-shadow ${transitionDuration}ms ${transitionFunction}`,
 
     transform: `transform ${transitionDuration}ms ${transitionFunction}`,
+
+    contactButtonsBackwardOpacity: `opacity ${transitionDuration}ms ${transitionFunction} ${
+      transitionDuration / 2
+    }ms`,
+    contactDataBackwardTransform: `transform ${transitionDuration}ms ${transitionFunction} ${
+      transitionDuration / 2
+    }ms`,
   },
 });
