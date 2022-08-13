@@ -1,5 +1,13 @@
 import styled from 'styled-components';
-import { FaPhoneAlt, FaTimes, FaRegSadTear } from 'react-icons/fa';
+import {
+  FaSortAlphaDown,
+  FaSortAlphaUpAlt,
+  FaSortNumericDown,
+  FaSortNumericUpAlt,
+  FaPhoneAlt,
+  FaTimes,
+  FaRegSadTear,
+} from 'react-icons/fa';
 
 export const ContactsTableBox = styled.div`
   min-width: ${({ theme }) => theme.sizes.contactsTableMin};
@@ -22,7 +30,9 @@ export const ContactsTable = styled.table`
 `;
 
 export const TableHeadCell = styled.td`
-  padding: ${({ theme }) => theme.space[2]};
+  position: relative;
+
+  padding: ${({ theme }) => theme.space[3]};
 
   text-align: center;
 
@@ -32,9 +42,75 @@ export const TableHeadCell = styled.td`
   color: ${({ theme }) => theme.colors.whiteText};
   background-color: ${({ theme }) => theme.colors.tableHead};
 
-  &:nth-child(2) {
+  &:not(:last-child) {
     border-right: ${({ theme }) => theme.borders.light};
   }
+`;
+
+export const SortByNameButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: ${({ theme }) => theme.space[2]};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* width: ${({ theme }) => theme.sizes.sortButton}; */
+  height: ${({ theme }) => theme.sizes.sortButton};
+
+  color: ${({ theme }) => theme.colors.whiteText};
+  background-color: ${({ theme }) => theme.colors.sortButtonBG};
+
+  border-width: 0;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition: ${({ theme }) => theme.transitions.color},
+    ${({ theme }) => theme.transitions.transform};
+`;
+
+export const SotrByNameIconASC = styled(FaSortAlphaDown)`
+  fill: currentColor;
+`;
+
+export const SotrByNameIconDSC = styled(FaSortAlphaUpAlt)`
+  fill: currentColor;
+`;
+
+export const SortByPhoneButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: ${({ theme }) => theme.space[2]};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* width: ${({ theme }) => theme.sizes.sortButton}; */
+  height: ${({ theme }) => theme.sizes.sortButton};
+
+  color: ${({ theme }) => theme.colors.lightText};
+  background-color: ${({ theme }) => theme.colors.sortButtonBG};
+
+  border-width: 0;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition: ${({ theme }) => theme.transitions.color},
+    ${({ theme }) => theme.transitions.transform};
+`;
+
+export const SotrByPhoneIconASC = styled(FaSortNumericDown)`
+  fill: currentColor;
+`;
+
+export const SotrByPhoneIconDSC = styled(FaSortNumericUpAlt)`
+  fill: currentColor;
 `;
 
 export const TableDataRow = styled.tr`
@@ -52,9 +128,7 @@ export const TableDataRow = styled.tr`
 `;
 
 export const TableDataCell = styled.td`
-  padding: ${({ theme }) => theme.space[2]};
-
-  text-align: center;
+  padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
 
   font-size: ${({ theme }) => theme.fontSizes.s};
 
@@ -62,14 +136,20 @@ export const TableDataCell = styled.td`
 
   &:first-child {
     width: ${({ theme }) => theme.sizes.callButton};
+    padding: ${({ theme }) => theme.space[2]};
   }
 
   &:nth-child(2) {
     border-right: ${({ theme }) => theme.borders.light};
   }
 
+  &:nth-child(3) {
+    text-align: right;
+  }
+
   &:last-child {
     width: ${({ theme }) => theme.sizes.deleteButton};
+    padding: ${({ theme }) => theme.space[2]};
   }
 `;
 

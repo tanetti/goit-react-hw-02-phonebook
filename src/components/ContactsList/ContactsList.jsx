@@ -5,6 +5,12 @@ import {
   ContactsTableBox,
   ContactsTable,
   TableHeadCell,
+  SortByNameButton,
+  SotrByNameIconASC,
+  SotrByNameIconDSC,
+  SortByPhoneButton,
+  SotrByPhoneIconASC,
+  SotrByPhoneIconDSC,
   TableDataRow,
   TableDataCell,
   PhoneLink,
@@ -24,10 +30,18 @@ export const ContactsList = ({ contacts, filter, onContactDelete }) => {
       <ContactsTable>
         <thead>
           <tr>
-            <TableHeadCell />
-            <TableHeadCell>Name</TableHeadCell>
-            <TableHeadCell>Phone</TableHeadCell>
-            <TableHeadCell />
+            <TableHeadCell colSpan={2}>
+              Contact name
+              <SortByNameButton type="button">
+                <SotrByNameIconASC size={theme.sizes.sortButtonIcon} />
+              </SortByNameButton>
+            </TableHeadCell>
+            <TableHeadCell colSpan={2}>
+              Phone number
+              <SortByPhoneButton type="button">
+                <SotrByPhoneIconASC size={theme.sizes.sortButtonIcon} />
+              </SortByPhoneButton>
+            </TableHeadCell>
           </tr>
         </thead>
 
@@ -35,16 +49,6 @@ export const ContactsList = ({ contacts, filter, onContactDelete }) => {
           {preparedContacts.length ? (
             preparedContacts.map(({ id, name, number }, idx) => (
               <TableDataRow key={id} isLight={idx % 2 === 0}>
-                <TableDataCell>
-                  <PhoneLink
-                    href={`tel:${normalizeNumberForCallLink(number)}`}
-                    aria-label={`Call ${name}`}
-                  >
-                    <PhoneIcon size={theme.sizes.callButtonIcon} />
-                  </PhoneLink>
-                </TableDataCell>
-                <TableDataCell>{name}</TableDataCell>
-                <TableDataCell>{number}</TableDataCell>
                 <TableDataCell>
                   <DeleteButton
                     type="button"
@@ -54,6 +58,16 @@ export const ContactsList = ({ contacts, filter, onContactDelete }) => {
                   >
                     <DeleteIcon size={theme.sizes.deleteButtonIcon} />
                   </DeleteButton>
+                </TableDataCell>
+                <TableDataCell>{name}</TableDataCell>
+                <TableDataCell>{number}</TableDataCell>
+                <TableDataCell>
+                  <PhoneLink
+                    href={`tel:${normalizeNumberForCallLink(number)}`}
+                    aria-label={`Call ${name}`}
+                  >
+                    <PhoneIcon size={theme.sizes.callButtonIcon} />
+                  </PhoneLink>
                 </TableDataCell>
               </TableDataRow>
             ))
