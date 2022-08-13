@@ -37,6 +37,7 @@ export class ContactFilter extends Component {
   };
 
   onEscPress = ({ code }) => {
+    console.log('Filter ', code);
     if (code !== 'Escape') return;
 
     this.setFilterValue('');
@@ -44,6 +45,8 @@ export class ContactFilter extends Component {
 
   addEscListener = () => {
     if (onkeydown && onkeydown !== this.onEscPress) return;
+    if (onkeydown && onkeydown === this.onEscPress && this.state.filterValue)
+      return;
     if (!this.state.filterValue) return (onkeydown = null);
 
     onkeydown = this.onEscPress;

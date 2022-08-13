@@ -52,6 +52,7 @@ export class App extends Component {
     currentTarget === target && this.toggleAddForm();
 
   onEscPress = ({ code }) => {
+    console.log('Modal ', code);
     if (code !== 'Escape') return;
 
     this.toggleAddForm();
