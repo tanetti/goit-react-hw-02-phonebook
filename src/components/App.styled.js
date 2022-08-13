@@ -26,7 +26,6 @@ export const AddContactButton = styled.button`
   align-items: center;
 
   height: ${({ theme }) => theme.sizes.filterFieldH};
-  margin-right: ${({ theme }) => theme.space[4]};
   padding: ${({ theme }) => theme.space[2]};
   padding-left: ${({ theme }) => theme.space[3]};
   padding-right: ${({ theme }) => theme.space[3]};

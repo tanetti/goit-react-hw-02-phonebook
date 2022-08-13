@@ -4,7 +4,7 @@ const transitionFunction = 'ease-out';
 export const theme = Object.freeze({
   colors: {
     darkText: '#212121',
-    lightText: '#686868',
+    lightText: '#8a8a8a',
     whiteText: '#fff',
 
     darkBG: '#ddd',
@@ -28,8 +28,8 @@ export const theme = Object.freeze({
     tableRowDark: '#eaeaea',
     tableRowDarkHovered: '#cfcfcf',
 
-    phoneIcon: '#2c9403',
-    phoneIconHovered: '#297a09',
+    callIcon: '#2c9403',
+    callIconHovered: '#297a09',
 
     deleteButtonIcon: '#db1212',
     deleteButtonIconHovered: '#ba0b0b',
@@ -53,8 +53,8 @@ export const theme = Object.freeze({
     sortButton: '26px',
     sortButtonIcon: '22px',
 
-    callButton: '30px',
-    callButtonIcon: '22px',
+    callLink: '30px',
+    callLinkIcon: '22px',
 
     deleteButton: '32px',
     deleteButtonIcon: '30px',

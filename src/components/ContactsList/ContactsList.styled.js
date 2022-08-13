@@ -50,47 +50,74 @@ export const TableHeadCell = styled.td`
 export const SortByNameButton = styled.button`
   position: absolute;
   top: 50%;
-  right: ${({ theme }) => theme.space[2]};
+  left: 0;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
+  width: 100%;
   height: ${({ theme }) => theme.sizes.sortButton};
 
-  color: ${({ theme }) => theme.colors.whiteText};
+  color: ${({ theme, isSortFieldName }) =>
+    isSortFieldName ? theme.colors.whiteText : theme.colors.lightText};
   background-color: ${({ theme }) => theme.colors.sortButtonBG};
 
   border-width: 0;
 
   cursor: pointer;
 
+  outline-offset: -1px;
+
   transform: translateY(-50%);
 
-  transition: ${({ theme }) => theme.transitions.color},
-    ${({ theme }) => theme.transitions.transform};
+  transition: ${({ theme }) => theme.transitions.color};
 `;
 
 export const SotrByNameIconASC = styled(FaSortAlphaDown)`
   fill: currentColor;
+
+  opacity: ${({ value }) => (value ? 1 : 0)};
+
+  transition: ${({ theme }) => theme.transitions.opacity},
+    ${({ theme }) => theme.transitions.transform};
+
+  ${SortByNameButton}:hover &,
+  ${SortByNameButton}:focus & {
+    transform: scale(1.15);
+  }
 `;
 
 export const SotrByNameIconDSC = styled(FaSortAlphaUpAlt)`
+  position: absolute;
+
   fill: currentColor;
+
+  opacity: ${({ value }) => (value ? 0 : 1)};
+
+  transition: ${({ theme }) => theme.transitions.opacity},
+    ${({ theme }) => theme.transitions.transform};
+
+  ${SortByNameButton}:hover &,
+  ${SortByNameButton}:focus & {
+    transform: scale(1.15);
+  }
 `;
 
-export const SortByPhoneButton = styled.button`
+export const SortByNumberButton = styled.button`
   position: absolute;
   top: 50%;
-  right: ${({ theme }) => theme.space[2]};
+  left: 0;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
+  width: 100%;
   height: ${({ theme }) => theme.sizes.sortButton};
 
-  color: ${({ theme }) => theme.colors.lightText};
+  color: ${({ theme, isSortFieldNumber }) =>
+    isSortFieldNumber ? theme.colors.whiteText : theme.colors.lightText};
   background-color: ${({ theme }) => theme.colors.sortButtonBG};
 
   border-width: 0;
@@ -103,12 +130,34 @@ export const SortByPhoneButton = styled.button`
     ${({ theme }) => theme.transitions.transform};
 `;
 
-export const SotrByPhoneIconASC = styled(FaSortNumericDown)`
+export const SotrByNumberIconASC = styled(FaSortNumericDown)`
   fill: currentColor;
+
+  opacity: ${({ value }) => (value ? 1 : 0)};
+
+  transition: ${({ theme }) => theme.transitions.opacity},
+    ${({ theme }) => theme.transitions.transform};
+
+  ${SortByNumberButton}:hover &,
+  ${SortByNumberButton}:focus & {
+    transform: scale(1.15);
+  }
 `;
 
-export const SotrByPhoneIconDSC = styled(FaSortNumericUpAlt)`
+export const SotrByNumberIconDSC = styled(FaSortNumericUpAlt)`
+  position: absolute;
+
   fill: currentColor;
+
+  opacity: ${({ value }) => (value ? 0 : 1)};
+
+  transition: ${({ theme }) => theme.transitions.opacity},
+    ${({ theme }) => theme.transitions.transform};
+
+  ${SortByNumberButton}:hover &,
+  ${SortByNumberButton}:focus & {
+    transform: scale(1.15);
+  }
 `;
 
 export const TableDataRow = styled.tr`
@@ -133,7 +182,7 @@ export const TableDataCell = styled.td`
   color: ${({ theme }) => theme.colors.darkText};
 
   &:first-child {
-    width: ${({ theme }) => theme.sizes.callButton};
+    width: ${({ theme }) => theme.sizes.callLink};
     padding: ${({ theme }) => theme.space[2]};
   }
 
@@ -148,6 +197,30 @@ export const TableDataCell = styled.td`
   &:last-child {
     width: ${({ theme }) => theme.sizes.deleteButton};
     padding: ${({ theme }) => theme.space[2]};
+  }
+`;
+
+export const NameDataContainer = styled.span`
+  display: block;
+
+  transition: ${({ theme }) => theme.transitions.transform};
+
+  transform: translateX(-30px);
+
+  ${TableDataRow}:hover & {
+    transform: translateX(-10px);
+  }
+`;
+
+export const NumberDataContainer = styled.span`
+  display: block;
+
+  transition: ${({ theme }) => theme.transitions.transform};
+
+  transform: translateX(30px);
+
+  ${TableDataRow}:hover & {
+    transform: translateX(10px);
   }
 `;
 
@@ -166,14 +239,26 @@ export const DeleteButton = styled.button`
 
   cursor: pointer;
 
+  opacity: 0;
+
+  transform: translateX(-110%);
+
   transition: ${({ theme }) => theme.transitions.color},
+    ${({ theme }) => theme.transitions.opacity},
     ${({ theme }) => theme.transitions.transform};
 
-  &:hover,
+  ${TableDataRow}:hover &,
   &:focus {
-    color: ${({ theme }) => theme.colors.deleteButtonIconHovered};
+    opacity: 1;
 
-    transform: scale(1.2);
+    transform: translateX(0);
+
+    &:hover,
+    &:focus {
+      color: ${({ theme }) => theme.colors.deleteButtonIconHovered};
+
+      transform: scale(1.2);
+    }
   }
 `;
 
@@ -181,32 +266,43 @@ export const DeleteIcon = styled(FaTimes)`
   fill: currentColor;
 `;
 
-export const PhoneLink = styled.a`
+export const CallLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: ${({ theme }) => theme.sizes.callButton};
-  height: ${({ theme }) => theme.sizes.callButton};
+  width: ${({ theme }) => theme.sizes.callLink};
+  height: ${({ theme }) => theme.sizes.callLink};
 
-  color: ${({ theme }) => theme.colors.phoneIcon};
+  color: ${({ theme }) => theme.colors.callIcon};
 
   text-decoration: none;
 
   outline-offset: -1px;
+  opacity: 0;
+
+  transform: translateX(110%);
 
   transition: ${({ theme }) => theme.transitions.color},
+    ${({ theme }) => theme.transitions.opacity},
     ${({ theme }) => theme.transitions.transform};
 
-  &:hover,
+  ${TableDataRow}:hover &,
   &:focus {
-    color: ${({ theme }) => theme.colors.phoneIconHovered};
+    opacity: 1;
 
-    transform: scale(1.2);
+    transform: translateX(0);
+
+    &:hover,
+    &:focus {
+      color: ${({ theme }) => theme.colors.callLinkIconHovered};
+
+      transform: scale(1.2);
+    }
   }
 `;
 
-export const PhoneIcon = styled(FaPhoneAlt)`
+export const CallLinkIcon = styled(FaPhoneAlt)`
   fill: currentColor;
 `;
 

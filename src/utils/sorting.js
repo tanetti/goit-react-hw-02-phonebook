@@ -1,49 +1,40 @@
-export const sorting = (sortField, isOrderASC) => {
+const sortContactsByName = isOrderASC => (a, b) => {
+  const aLower = a.name.toLowerCase();
+  const bLower = b.name.toLowerCase();
+
+  if (isOrderASC) {
+    if (aLower > bLower) return 1;
+    if (aLower < bLower) return -1;
+
+    return 0;
+  } else {
+    if (aLower < bLower) return 1;
+    if (aLower > bLower) return -1;
+
+    return 0;
+  }
+};
+
+const sortContactsByNumber = isOrderASC => (a, b) => {
+  if (isOrderASC) {
+    if (a.number > b.number) return 1;
+    if (a.number < b.number) return -1;
+
+    return 0;
+  } else {
+    if (a.number < b.number) return 1;
+    if (a.number > b.number) return -1;
+
+    return 0;
+  }
+};
+
+export const sortContacts = (sortField, isOrderASC) => {
   if (sortField === 'name') {
-    if (isOrderASC) {
-      return (a, b) => {
-        const aLower = a.name.toLowerCase();
-        const bLower = b.name.toLowerCase();
-
-        if (aLower > bLower) return 1;
-        if (aLower < bLower) return -1;
-
-        return 0;
-      };
-    } else {
-      return (a, b) => {
-        const aLower = a.name.toLowerCase();
-        const bLower = b.name.toLowerCase();
-
-        if (aLower < bLower) return 1;
-        if (aLower > bLower) return -1;
-
-        return 0;
-      };
-    }
+    return sortContactsByName(isOrderASC);
   }
 
   if (sortField === 'number') {
-    if (isOrderASC) {
-      return (a, b) => {
-        const aLower = a.number;
-        const bLower = b.number;
-
-        if (aLower > bLower) return 1;
-        if (aLower < bLower) return -1;
-
-        return 0;
-      };
-    } else {
-      return (a, b) => {
-        const aLower = a.number;
-        const bLower = b.number;
-
-        if (aLower < bLower) return 1;
-        if (aLower > bLower) return -1;
-
-        return 0;
-      };
-    }
+    return sortContactsByNumber(isOrderASC);
   }
 };

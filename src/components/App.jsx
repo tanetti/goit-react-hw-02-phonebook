@@ -74,6 +74,7 @@ export class App extends Component {
 
         <header>
           <HeaderContainer>
+            <ContactFilter onFilterChange={this.onFilterChange} />
             <AddContactButton
               type="button"
               aria-label="Add new contact"
@@ -83,7 +84,6 @@ export class App extends Component {
             >
               <AddContactIcon size={theme.sizes.addContactIcon} />
             </AddContactButton>
-            <ContactFilter onFilterChange={this.onFilterChange} />
 
             {this.state.shouldAddFormRender && (
               <Backdrop shouldShown={this.state.shouldAddFormShown}>

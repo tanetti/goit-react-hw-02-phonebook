@@ -5,6 +5,7 @@ export const FilterContainer = styled.label`
   position: relative;
 
   height: ${({ theme }) => theme.sizes.filterFieldH};
+  margin-right: ${({ theme }) => theme.space[4]};
 
   color: ${({ theme }) => theme.colors.filterIcon};
 
