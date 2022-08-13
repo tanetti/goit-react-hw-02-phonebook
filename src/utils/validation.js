@@ -38,6 +38,6 @@ export const createNewValidationSchema = contacts => {
       .matches(NUMBER_VALIDATION_REG_EX, 'Invalid phone number format')
       .min(8, 'Minimal lenght - 8')
       .max(20, 'Maximal lenght - 20')
-      .required('Please enter contact phone number'),
+      .required('Please enter phone number'),
   });
 };

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 import { createNewValidationSchema } from 'utils';
+import { theme } from 'constants/theme';
 import {
   FormContainer,
   FormTitle,
@@ -9,6 +10,12 @@ import {
   FormFieldContainer,
   FormField,
   FormFieldLabel,
+  UserFieldIcon,
+  NumberFieldIcon,
+  ButtonContainer,
+  CancelButton,
+  AddButton,
+  ErrorMessageField,
 } from './AddContactForm.styled';
 
 export const AddContactForm = ({
@@ -35,41 +42,56 @@ export const AddContactForm = ({
         onNewContactSubmit(validationSchema.cast(values), actions)
       }
     >
-      {({ values }) => (
+      {({ values, errors, touched }) => (
         <FormContainer shouldShown={shouldShown}>
           <FormTitle>Add new contact</FormTitle>
           <StyledForm autoComplete="off">
-            <FormFieldContainer>
+            <FormFieldContainer isError={errors.name} isFilled={values.name}>
               <FormField
                 id="contact-name"
                 name="name"
                 placeholder=" "
                 type="text"
               />
+              <UserFieldIcon size={theme.sizes.addFormFieldIcon} />
               <FormFieldLabel htmlFor="contact-name">
                 Contact name
               </FormFieldLabel>
-              <ErrorMessage name="name" />
+              <ErrorMessageField isError={errors.name}>
+                {errors.name}
+              </ErrorMessageField>
             </FormFieldContainer>
-
-            <FormFieldContainer>
+            <FormFieldContainer
+              isError={errors.number}
+              isFilled={values.number}
+            >
               <FormField
                 id="contact-number"
                 name="number"
                 placeholder=" "
                 type="tel"
               />
+              <NumberFieldIcon size={theme.sizes.addFormFieldIcon} />
               <FormFieldLabel htmlFor="contact-number">
                 Phone number
               </FormFieldLabel>
-              <ErrorMessage name="number" />
+              <ErrorMessageField isError={errors.number}>
+                {errors.number}
+              </ErrorMessageField>
             </FormFieldContainer>
-            <button type="button" onClick={onCancel}>
-              Cancel
-            </button>
-            <button type="submit" disabled={!values.name || !values.number}>
-              Add contact
-            </button>
+            <ButtonContainer>
+              <CancelButton type="button" onClick={onCancel}>
+                Cancel
+              </CancelButton>
+              <AddButton
+                type="submit"
+                disabled={
+                  !values.name || !values.number || errors.name || errors.number
+                }
+              >
+                Add contact
+              </AddButton>
+            </ButtonContainer>
           </StyledForm>
         </FormContainer>
       )}

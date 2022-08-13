@@ -36,6 +36,11 @@ export const theme = Object.freeze({
     deleteButtonIcon: '#db1212',
     deleteButtonIconHovered: '#ba0b0b',
     deleteButtonBG: 'transparent',
+
+    cancelButton: '#db1212',
+    cancelButtonHovered: '#ba0b0b',
+
+    errorText: '#c40a0a',
   },
 
   space: [0, '2px', '4px', '8px', '16px', '32px', '64px', '128px', '256px'],
@@ -63,11 +68,13 @@ export const theme = Object.freeze({
 
     noResultIcon: '26px',
 
-    addFormMin: '290px',
-    addFormMax: '450px',
+    addFormMin: '340px',
+    addFormMax: '350px',
 
     addFormFieldW: '100%',
-    addFormFieldH: '38px',
+    addFormFieldH: '42px',
+
+    addFormFieldIcon: '18px',
   },
 
   fontSizes: {

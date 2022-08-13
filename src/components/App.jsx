@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Notify } from 'notiflix';
 import { GlobalStyles } from 'components/GlobalStyles/GlobalStyles';
 import { theme } from 'constants/theme';
 import { Box } from 'components/Shared';
@@ -14,6 +15,21 @@ import {
 import { ContactFilter } from 'components/ContactFilter/ContactFilter';
 import { AddContactForm } from 'components/AddContactForm/AddContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
+
+Notify.init({
+  position: 'right-bottom',
+  distance: '20px',
+  borderRadius: '8px',
+  timeout: 4000,
+  clickToClose: true,
+  cssAnimationStyle: 'from-right',
+  success: {
+    background: '#2c9403',
+  },
+  failure: {
+    background: '#db1212',
+  },
+});
 
 export class App extends Component {
   state = {
@@ -61,6 +77,9 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
+
+    this.toggleAddForm();
+    Notify.success(`New contact was successfully added`);
   };
 
   onContactDelete = ({ currentTarget: { value: contactID } }) => {
