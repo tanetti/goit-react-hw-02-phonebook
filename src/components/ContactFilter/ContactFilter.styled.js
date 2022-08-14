@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import { FaSistrix } from 'react-icons/fa';
+import { BiSearch } from 'react-icons/bi';
 
 export const FilterContainer = styled.label`
   position: relative;
 
+  min-width: ${({ theme }) => theme.sizes.filterFieldMinW};
+  width: 100%;
+  max-width: ${({ theme }) => theme.sizes.filterFieldMaxW};
   height: ${({ theme }) => theme.sizes.filterFieldH};
   margin-right: ${({ theme }) => theme.space[4]};
 
@@ -11,44 +14,60 @@ export const FilterContainer = styled.label`
 
   cursor: text;
 
-  transition: ${({ theme }) => theme.transitions.transform},
-    ${({ theme }) => theme.transitions.color};
+  transition: ${({ theme }) => theme.transitions.color};
 
   &:focus-within,
   &:hover {
-    color: ${({ theme }) => theme.colors.filterIconHovered};
-
-    transform: scale(1.05);
+    color: ${({ theme }) => theme.colors.mainAccentHovered};
   }
 `;
 
 export const FilterField = styled.input`
-  width: ${({ theme }) => theme.sizes.filterFieldW};
+  width: 100%;
   height: 100%;
-  padding: ${({ theme }) => theme.space[3]} ${({ theme }) => theme.space[4]};
-  padding-left: ${({ theme }) => theme.space[5]};
+  padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
+  padding-left: ${({ theme }) =>
+    `${Math.floor(
+      parseInt(theme.space[4]) + parseInt(theme.sizes.filterFieldIcon) * 1.4
+    )}px`};
 
-  border: ${({ theme }) => theme.borders.generic};
-  border-radius: ${({ theme }) => theme.radii.generic};
+  background-color: ${({ theme }) => theme.colors.filterFileldBG};
 
-  box-shadow: ${({ theme }) => theme.shadows.generic};
+  border: ${({ theme }) => theme.borders.accentTransparent};
+  border-radius: ${({ theme }) => theme.radii.roundSide};
 
   outline: transparent;
 
   transition: ${({ theme }) => theme.transitions.borderColor},
-    ${({ theme }) => theme.transitions.boxShadow};
+    ${({ theme }) => theme.transitions.backgroundColor};
 
-  &:hover,
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.placeholder};
+
+    transition: ${({ theme }) => theme.transitions.color};
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.whiteBG};
+
+    border: ${({ theme }) => theme.borders.accentHovered};
+  }
+
   &:focus {
-    border: ${({ theme }) => theme.borders.genericHovered};
-    box-shadow: ${({ theme }) => theme.shadows.genericHovered};
+    &::placeholder {
+      color: transparent;
+    }
+
+    background-color: ${({ theme }) => theme.colors.whiteBG};
+
+    border: ${({ theme }) => theme.borders.accentHovered};
   }
 `;
 
-export const FilterIcon = styled(FaSistrix)`
+export const FilterIcon = styled(BiSearch)`
   position: absolute;
   top: 50%;
-  left: ${({ theme }) => theme.space[3]};
+  left: ${({ theme }) => theme.space[4]};
 
   transform: translateY(-50%);
 

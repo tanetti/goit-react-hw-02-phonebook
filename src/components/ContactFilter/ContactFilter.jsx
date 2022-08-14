@@ -60,11 +60,11 @@ export class ContactFilter extends Component {
           type="text"
           name="filter"
           aria-label="Phonebook filter"
-          placeholder="Contact search..."
+          placeholder="Filtered Search"
           value={this.state.filterValue}
           onChange={this.setFilterValue}
         />
-        <FilterIcon size={theme.sizes.filterIcon} />
+        <FilterIcon size={theme.sizes.filterFieldIcon} />
       </FilterContainer>
     );
   }

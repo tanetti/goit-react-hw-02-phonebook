@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaUserPlus } from 'react-icons/fa';
+import { BiUserPlus } from 'react-icons/bi';
 
 export const HeaderContainer = styled.header`
   position: fixed;
@@ -13,12 +13,7 @@ export const HeaderContainer = styled.header`
   height: ${({ theme }) => theme.sizes.headerH};
   padding: ${({ theme }) => theme.space[4]};
 
-  background-color: ${({ theme }) => theme.colors.lightTransparentBG};
-  backdrop-filter: blur(4px);
-
-  border-bottom: ${({ theme }) => theme.borders.light};
-
-  box-shadow: ${({ theme }) => theme.shadows.generic};
+  background-color: ${({ theme }) => theme.colors.whiteBG};
 `;
 
 export const AddContactButton = styled.button`
@@ -26,42 +21,45 @@ export const AddContactButton = styled.button`
   justify-content: center;
   align-items: center;
 
+  flex-shrink: 0;
+
+  min-width: ${({ theme }) => theme.sizes.addContactMinW};
   height: ${({ theme }) => theme.sizes.filterFieldH};
-  padding: ${({ theme }) => theme.space[2]};
-  padding-left: ${({ theme }) => theme.space[3]};
-  padding-right: ${({ theme }) => theme.space[3]};
+  padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
 
-  color: ${({ theme }) => theme.colors.whiteBG};
-  background-color: ${({ theme }) => theme.colors.addButtonBG};
+  color: ${({ theme }) => theme.colors.whiteText};
+  background-color: ${({ theme }) => theme.colors.mainAccent};
 
-  border: ${({ theme }) => theme.borders.generic};
-  border-radius: ${({ theme }) => theme.radii.generic};
-
-  box-shadow: ${({ theme }) => theme.shadows.generic};
+  border: ${({ theme }) => theme.borders.accent};
+  border-radius: ${({ theme }) => theme.radii.roundSide};
 
   cursor: pointer;
 
   transition: ${({ theme }) => theme.transitions.color},
     ${({ theme }) => theme.transitions.backgroundColor},
-    ${({ theme }) => theme.transitions.transform},
-    ${({ theme }) => theme.transitions.borderColor},
-    ${({ theme }) => theme.transitions.boxShadow};
+    ${({ theme }) => theme.transitions.borderColor};
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.addButtonHovered};
-    background-color: ${({ theme }) => theme.colors.addButtonHoveredBG};
+    color: ${({ theme }) => theme.colors.lightText};
+    background-color: ${({ theme }) => theme.colors.mainAccentHovered};
 
-    border: ${({ theme }) => theme.borders.genericHovered};
-
-    box-shadow: ${({ theme }) => theme.shadows.genericHovered};
-
-    transform: scale(1.1);
+    border: ${({ theme }) => theme.borders.accentHovered};
   }
 `;
 
-export const AddContactIcon = styled(FaUserPlus)`
+export const AddContactIcon = styled(BiUserPlus)`
   fill: currentColor;
+`;
+
+export const AddContactTitle = styled.span`
+  padding-left: ${({ theme }) => theme.space[3]};
+
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+
+  @media screen and (max-width: ${({ theme }) => theme.breakPoints.beforeMin}) {
+    display: none;
+  }
 `;
 
 export const Backdrop = styled.div`

@@ -7,8 +7,9 @@ import { PageTitle } from 'components/PageTitle/PageTitle';
 import { Section, Container } from 'components/Shared';
 import {
   HeaderContainer,
-  AddContactIcon,
   AddContactButton,
+  AddContactIcon,
+  AddContactTitle,
   Backdrop,
   SectionTitle,
 } from 'components/App.styled';
@@ -114,6 +115,7 @@ export class App extends Component {
               onClick={this.toggleAddForm}
             >
               <AddContactIcon size={theme.sizes.addContactIcon} />
+              <AddContactTitle>Add contact</AddContactTitle>
             </AddContactButton>
           </HeaderContainer>
 

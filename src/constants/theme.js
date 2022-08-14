@@ -3,13 +3,19 @@ const transitionFunction = 'ease-out';
 
 export const theme = Object.freeze({
   colors: {
-    darkText: '#212121',
-    lightText: '#8a8a8a',
+    darkText: '#444',
+    lightText: '#edf1f2',
     whiteText: '#fff',
+    placeholder: '#667786',
 
     darkBG: '#ddd',
     lightBG: '#f6f6f6',
     whiteBG: '#fff',
+
+    mainAccent: '#2aa3ef',
+    mainAccentHovered: '#218fd5',
+
+    filterFileldBG: '#e6ecf0',
 
     backdropBG: '#5e5e5ea0',
 
@@ -48,11 +54,13 @@ export const theme = Object.freeze({
   sizes: {
     headerH: '70px',
 
-    filterFieldW: '230px',
-    filterFieldH: '38px',
+    filterFieldMinW: '184px',
+    filterFieldMaxW: '320px',
+    filterFieldH: '40px',
+    filterFieldIcon: '24px',
 
-    addContactIcon: '26px',
-    filterIcon: '20px',
+    addContactMinW: '80px',
+    addContactIcon: '30px',
 
     contactsTableMin: '290px',
     contactsTableMax: '520px',
@@ -78,6 +86,7 @@ export const theme = Object.freeze({
   },
 
   fontSizes: {
+    main: '18px',
     xs: '12px',
     s: '14px',
     m: '16px',
@@ -93,13 +102,18 @@ export const theme = Object.freeze({
   },
 
   borders: {
-    light: '1px solid #aaa',
+    accent: '2px solid #2aa3ef',
+    accentHovered: '2px solid #218fd5',
+    accentTransparent: '2px solid transparent',
+
+    light: '1px solid #667786',
     generic: '1px solid #888',
     genericHovered: '1px solid #212121',
   },
 
   radii: {
     none: '0',
+    roundSide: '20px',
     generic: '8px',
     round: '50%',
   },
@@ -113,6 +127,7 @@ export const theme = Object.freeze({
   },
 
   breakPoints: {
+    beforeMin: '479.98px',
     midMin: '480px',
     midMax: '767.98px',
     tabletMin: '768px',
