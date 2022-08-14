@@ -3,28 +3,21 @@ const transitionFunction = 'ease-out';
 
 export const theme = Object.freeze({
   colors: {
-    darkText: '#444',
+    darkText: '#333',
     lightText: '#edf1f2',
     whiteText: '#fff',
     placeholder: '#667786',
 
-    darkBG: '#ddd',
-    lightBG: '#f6f6f6',
+    darkBG: '#e6ecf0',
+    lightBG: '#f5f8fa',
     whiteBG: '#fff',
 
     mainAccent: '#2aa3ef',
-    mainAccentHovered: '#218fd5',
-
-    filterFileldBG: '#e6ecf0',
+    mainAccentHovered: '#1f8cd0',
 
     backdropBG: '#5e5e5ea0',
 
     lightTransparentBG: '#eeeeee80',
-
-    addButtonHovered: '#f7f7f7',
-
-    addButtonBG: '#2c9403',
-    addButtonHoveredBG: '#297a09',
 
     filterIcon: '#888',
     filterIconHovered: '#212121',
@@ -43,10 +36,8 @@ export const theme = Object.freeze({
     deleteButtonIconHovered: '#ba0b0b',
     deleteButtonBG: 'transparent',
 
-    cancelButton: '#db1212',
-    cancelButtonHovered: '#ba0b0b',
-
-    errorText: '#c40a0a',
+    success: '#1f941c',
+    error: '#c40a0a',
   },
 
   space: [0, '2px', '4px', '8px', '16px', '32px', '64px', '128px', '256px'],
@@ -76,13 +67,13 @@ export const theme = Object.freeze({
 
     noResultIcon: '26px',
 
-    addFormMin: '340px',
-    addFormMax: '350px',
+    addFormMin: '300px',
+    addFormMax: '400px',
 
     addFormFieldW: '100%',
-    addFormFieldH: '42px',
+    addFormFieldH: '46px',
 
-    addFormFieldIcon: '18px',
+    addFormFieldIcon: '30px',
   },
 
   fontSizes: {
@@ -103,10 +94,13 @@ export const theme = Object.freeze({
 
   borders: {
     accent: '2px solid #2aa3ef',
-    accentHovered: '2px solid #218fd5',
+    accentHovered: '2px solid #1f8cd0',
     accentTransparent: '2px solid transparent',
 
-    light: '1px solid #667786',
+    success: '2px solid #1f941c',
+    error: '2px solid #c40a0a',
+
+    light: '2px solid #667786',
     generic: '1px solid #888',
     genericHovered: '1px solid #212121',
   },

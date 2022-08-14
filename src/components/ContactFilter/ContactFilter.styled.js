@@ -10,7 +10,7 @@ export const FilterContainer = styled.label`
   height: ${({ theme }) => theme.sizes.filterFieldH};
   margin-right: ${({ theme }) => theme.space[4]};
 
-  color: ${({ theme }) => theme.colors.filterIcon};
+  color: ${({ theme }) => theme.colors.placeholder};
 
   cursor: text;
 
@@ -18,7 +18,7 @@ export const FilterContainer = styled.label`
 
   &:focus-within,
   &:hover {
-    color: ${({ theme }) => theme.colors.mainAccentHovered};
+    color: ${({ theme }) => theme.colors.darkText};
   }
 `;
 
@@ -31,7 +31,7 @@ export const FilterField = styled.input`
       parseInt(theme.space[4]) + parseInt(theme.sizes.filterFieldIcon) * 1.4
     )}px`};
 
-  background-color: ${({ theme }) => theme.colors.filterFileldBG};
+  background-color: ${({ theme }) => theme.colors.darkBG};
 
   border: ${({ theme }) => theme.borders.accentTransparent};
   border-radius: ${({ theme }) => theme.radii.roundSide};
@@ -48,9 +48,9 @@ export const FilterField = styled.input`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.whiteBG};
+    background-color: ${({ theme }) => theme.colors.lightBG};
 
-    border: ${({ theme }) => theme.borders.accentHovered};
+    border: ${({ theme }) => theme.borders.accent};
   }
 
   &:focus {
@@ -58,9 +58,9 @@ export const FilterField = styled.input`
       color: transparent;
     }
 
-    background-color: ${({ theme }) => theme.colors.whiteBG};
+    background-color: ${({ theme }) => theme.colors.lightBG};
 
-    border: ${({ theme }) => theme.borders.accentHovered};
+    border: ${({ theme }) => theme.borders.accent};
   }
 `;
 
@@ -68,6 +68,8 @@ export const FilterIcon = styled(BiSearch)`
   position: absolute;
   top: 50%;
   left: ${({ theme }) => theme.space[4]};
+
+  pointer-events: none;
 
   transform: translateY(-50%);
 

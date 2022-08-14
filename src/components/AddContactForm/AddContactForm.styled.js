@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
-import { FaUserAlt, FaPhoneAlt } from 'react-icons/fa';
+import { BiUser, BiPhone } from 'react-icons/bi';
 
 export const FormContainer = styled.div`
   min-width: ${({ theme }) => theme.sizes.addFormMin};
@@ -10,7 +10,7 @@ export const FormContainer = styled.div`
 
   background-color: ${({ theme }) => theme.colors.whiteBG};
 
-  border: ${({ theme }) => theme.borders.generic};
+  border: ${({ theme }) => theme.borders.accentTransparent};
   border-radius: ${({ theme }) => theme.radii.generic};
 
   opacity: ${({ shouldShown }) => (shouldShown ? 1 : 0)};
@@ -38,28 +38,51 @@ export const StyledForm = styled(Form)`
 export const FormField = styled(Field)`
   width: 100%;
   height: 100%;
-  padding: ${({ theme }) => theme.space[3]} ${({ theme }) => theme.space[4]};
-  padding-left: ${({ theme }) => theme.space[5]};
-
-  color: ${({ theme }) => theme.colors.darkText};
+  padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[3]};
+  padding-left: ${({ theme }) => theme.space[6]};
 
   font-size: ${({ theme }) => theme.fontSizes.m};
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 
-  border: ${({ theme }) => theme.borders.generic};
-  border-radius: ${({ theme }) => theme.radii.generic};
+  color: ${({ theme }) => theme.colors.darkText};
+  background-color: ${({ theme }) => theme.colors.lightBG};
 
-  box-shadow: ${({ theme }) => theme.shadows.generic};
+  border-width: 0;
+  border-bottom: ${({ theme }) => theme.borders.light};
 
   outline: transparent;
 
-  transition: ${({ theme }) => theme.transitions.borderColor},
-    ${({ theme }) => theme.transitions.boxShadow};
+  transition: ${({ theme }) => theme.transitions.borderColor};
 
   &:hover,
   &:focus {
-    border: ${({ theme }) => theme.borders.genericHovered};
-    box-shadow: ${({ theme }) => theme.shadows.genericHovered};
+    border-bottom: ${({ theme }) => theme.borders.accent};
+  }
+`;
+
+export const FormFieldLabel = styled.label`
+  position: absolute;
+  top: 50%;
+  left: ${({ theme }) => theme.space[6]};
+
+  font-size: ${({ theme }) => theme.fontSizes.m};
+
+  color: ${({ theme }) => theme.colors.placeholder};
+
+  pointer-events: none;
+
+  transform: translateY(-50%);
+
+  transition: ${({ theme }) => theme.transitions.color},
+    ${({ theme }) => theme.transitions.transform},
+    ${({ theme }) => theme.transitions.font};
+
+  ${FormField}:not(:placeholder-shown) ~ &,
+  ${FormField}:focus ~ & {
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+
+    transform: translateY(-40px) translateX(-62px);
   }
 `;
 
@@ -69,78 +92,47 @@ export const FormFieldContainer = styled.div`
   width: ${({ theme }) => theme.sizes.addFormFieldW};
   height: ${({ theme }) => theme.sizes.addFormFieldH};
 
-  color: ${({ isError, isFilled, theme }) => {
-    if (isError) return theme.colors.errorText;
-    if (isFilled) return theme.colors.addButtonBG;
-  }};
+  color: ${({ theme }) => theme.colors.placeholder};
 
   margin-bottom: ${({ theme }) => theme.space[5]};
 
-  transition: ${({ theme }) => theme.transitions.color},
-    ${({ theme }) => theme.transitions.transform};
+  transition: ${({ theme }) => theme.transitions.color};
 
-  &:focus-within {
+  &:focus-within,
+  &:hover {
     color: ${({ theme }) => theme.colors.darkText};
-
-    transform: scale(1.05);
   }
 
   ${FormField} {
     border-color: ${({ isError, isFilled, theme }) => {
-      if (isError) return theme.colors.errorText;
-      if (isFilled) return theme.colors.addButtonBG;
+      if (isError) return theme.colors.error;
+      if (isFilled) return theme.colors.success;
+    }};
+  }
+
+  ${FormFieldLabel} {
+    color: ${({ isError, isFilled, theme }) => {
+      if (!isError && isFilled) return theme.colors.success;
+
+      return theme.colors.placeholder;
     }};
   }
 `;
 
-export const FormFieldLabel = styled.label`
+export const UserFieldIcon = styled(BiUser)`
   position: absolute;
   top: 50%;
-  left: ${({ theme }) => `${parseInt(theme.space[5]) + 2}px`};
-
-  pointer-events: none;
-
-  transform: translateY(-50%);
-
-  transition: ${({ theme }) => theme.transitions.color},
-    ${({ theme }) => theme.transitions.backgroundColor},
-    ${({ theme }) => theme.transitions.transform},
-    ${({ theme }) => theme.transitions.font};
-
-  ${FormField}:not(:placeholder-shown) ~ & {
-    padding: ${({ theme }) => theme.space[0]} ${({ theme }) => theme.space[2]};
-
-    font-size: ${({ theme }) => theme.fontSizes.xs};
-    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
-
-    background-color: ${({ theme }) => theme.colors.whiteBG};
-
-    transform: translate(-20px, -28px);
-  }
-
-  ${FormField}:not(:placeholder-shown):hover ~ & {
-    color: ${({ theme }) => theme.colors.darkText};
-  }
-
-  ${FormField}:placeholder-shown:hover ~ & {
-    color: ${({ theme }) => theme.colors.lightText};
-  }
-`;
-
-export const UserFieldIcon = styled(FaUserAlt)`
-  position: absolute;
-  top: 50%;
-  left: ${({ theme }) => theme.space[3]};
+  left: ${({ theme }) => theme.space[4]};
 
   fill: currentColor;
 
   transform: translateY(-50%);
 `;
 
-export const NumberFieldIcon = styled(FaPhoneAlt)`
+export const NumberFieldIcon = styled(BiPhone)`
   position: absolute;
   top: 50%;
-  left: ${({ theme }) => theme.space[3]};
+  left: ${({ theme }) => theme.space[4]};
 
   fill: currentColor;
 
@@ -156,82 +148,71 @@ export const ButtonContainer = styled.div`
 export const CancelButton = styled.button`
   display: block;
 
-  padding: ${({ theme }) => theme.space[3]};
+  min-width: ${({ theme }) => theme.sizes.addContactMinW};
+  height: ${({ theme }) => theme.sizes.filterFieldH};
+  padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
 
-  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
-
-  color: ${({ theme }) => theme.colors.cancelButton};
+  color: ${({ theme }) => theme.colors.mainAccent};
   background-color: ${({ theme }) => theme.colors.whiteBG};
+
+  border: ${({ theme }) => theme.borders.accent};
+  border-radius: ${({ theme }) => theme.radii.roundSide};
 
   cursor: pointer;
 
-  border: ${({ theme }) => theme.borders.generic};
-  border-radius: ${({ theme }) => theme.radii.generic};
-
-  box-shadow: ${({ theme }) => theme.shadows.generic};
-
   transition: ${({ theme }) => theme.transitions.color},
-    ${({ theme }) => theme.transitions.backgroundColor},
-    ${({ theme }) => theme.transitions.boxShadow},
-    ${({ theme }) => theme.transitions.transform};
+    ${({ theme }) => theme.transitions.borderColor};
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.cancelButtonHovered};
-    background-color: ${({ theme }) => theme.colors.lightBG};
+    color: ${({ theme }) => theme.colors.error};
 
-    box-shadow: ${({ theme }) => theme.shadows.genericHovered};
-
-    transform: scale(1.1);
+    border: ${({ theme }) => theme.borders.error};
   }
 `;
 
 export const AddButton = styled.button`
   display: block;
 
-  padding: ${({ theme }) => theme.space[3]};
-
-  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  min-width: ${({ theme }) => theme.sizes.addContactMinW};
+  height: ${({ theme }) => theme.sizes.filterFieldH};
+  padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
 
   color: ${({ theme }) => theme.colors.whiteText};
-  background-color: ${({ theme }) => theme.colors.addButtonBG};
+  background-color: ${({ theme }) => theme.colors.mainAccent};
+
+  border: ${({ theme }) => theme.borders.accent};
+  border-radius: ${({ theme }) => theme.radii.roundSide};
 
   cursor: pointer;
 
-  border: ${({ theme }) => theme.borders.generic};
-  border-radius: ${({ theme }) => theme.radii.generic};
-
-  box-shadow: ${({ theme }) => theme.shadows.generic};
-
   transition: ${({ theme }) => theme.transitions.backgroundColor},
-    ${({ theme }) => theme.transitions.boxShadow},
-    ${({ theme }) => theme.transitions.transform};
+    ${({ theme }) => theme.transitions.borderColor};
 
   &:disabled {
     background-color: ${({ theme }) => theme.colors.darkBG};
 
+    border: ${({ theme }) => theme.borders.accentTransparent};
+
     &:hover {
       background-color: ${({ theme }) => theme.colors.darkBG};
 
-      box-shadow: ${({ theme }) => theme.shadows.generic};
-
-      transform: scale(1);
+      border: ${({ theme }) => theme.borders.accentTransparent};
     }
   }
 
   &:hover,
   &:focus {
-    background-color: ${({ theme }) => theme.colors.addButtonHoveredBG};
+    background-color: ${({ theme }) => theme.colors.success};
 
-    box-shadow: ${({ theme }) => theme.shadows.genericHovered};
-
-    transform: scale(1.1);
+    border: ${({ theme }) => theme.borders.success};
   }
 `;
 
 export const ErrorMessageField = styled.div`
   position: absolute;
   bottom: ${({ theme }) => theme.sizes.addFormFieldH};
+  left: 0;
 
   width: 100%;
   padding: ${({ theme }) => theme.space[1]};
@@ -240,7 +221,7 @@ export const ErrorMessageField = styled.div`
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   text-align: right;
 
-  color: ${({ theme }) => theme.colors.errorText};
+  color: ${({ theme }) => theme.colors.error};
 
   opacity: ${({ isError }) => (isError ? 1 : 0)};
 

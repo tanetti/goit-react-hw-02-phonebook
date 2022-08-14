@@ -35,13 +35,11 @@ export const AddContactButton = styled.button`
 
   cursor: pointer;
 
-  transition: ${({ theme }) => theme.transitions.color},
-    ${({ theme }) => theme.transitions.backgroundColor},
+  transition: ${({ theme }) => theme.transitions.backgroundColor},
     ${({ theme }) => theme.transitions.borderColor};
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.lightText};
     background-color: ${({ theme }) => theme.colors.mainAccentHovered};
 
     border: ${({ theme }) => theme.borders.accentHovered};
@@ -93,7 +91,7 @@ export const SectionTitle = styled.h2`
   margin: ${({ theme }) => theme.space[0]};
   margin-bottom: ${({ theme }) => theme.space[5]};
 
-  font-size: ${({ theme }) => theme.fontSizes.l};
+  font-size: ${({ theme }) => theme.fontSizes.xl};
   text-align: center;
   text-transform: uppercase;
 `;
