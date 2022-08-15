@@ -93,6 +93,8 @@ export const theme = Object.freeze({
   },
 
   borders: {
+    thin: '1px solid #8697a6',
+
     accent: '2px solid #2aa3ef',
     accentHovered: '2px solid #1f8cd0',
     accentTransparent: '2px solid transparent',

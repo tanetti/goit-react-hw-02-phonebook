@@ -4,8 +4,6 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
 
 body {
-  width: 100vw;
-  height: 100vh;
   margin: ${({ theme }) => theme.space[0]};
   
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

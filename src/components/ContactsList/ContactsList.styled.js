@@ -12,17 +12,13 @@ import {
 export const ContactsTableBox = styled.div`
   min-width: ${({ theme }) => theme.sizes.contactsTableMin};
   width: 100%;
-  height: 100%;
   max-width: ${({ theme }) => theme.sizes.contactsTableMax};
   margin-left: auto;
   margin-right: auto;
 
-  border: ${({ theme }) => theme.borders.light};
   border-radius: ${({ theme }) => theme.radii.generic};
 
-  box-shadow: ${({ theme }) => theme.shadows.generic};
-
-  overflow-y: auto;
+  overflow: hidden;
 `;
 
 export const ContactsTable = styled.table`
@@ -41,10 +37,10 @@ export const TableHeadCell = styled.td`
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 
   color: ${({ theme }) => theme.colors.whiteText};
-  background-color: ${({ theme }) => theme.colors.tableHead};
+  background-color: ${({ theme }) => theme.colors.mainAccent};
 
   &:not(:last-child) {
-    border-right: ${({ theme }) => theme.borders.light};
+    border-right: ${({ theme }) => theme.borders.thin};
   }
 `;
 
@@ -188,7 +184,7 @@ export const TableDataCell = styled.td`
   }
 
   &:nth-child(2) {
-    border-right: ${({ theme }) => theme.borders.light};
+    border-right: ${({ theme }) => theme.borders.thin};
   }
 
   &:nth-child(3) {

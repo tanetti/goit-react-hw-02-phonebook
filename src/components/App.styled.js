@@ -2,13 +2,20 @@ import styled from 'styled-components';
 import { BiUserPlus } from 'react-icons/bi';
 
 export const HeaderContainer = styled.header`
+  position: fixed;
+  z-index: 100;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
+  width: 100%;
   padding: ${({ theme }) => theme.space[4]};
 
   background-color: ${({ theme }) => theme.colors.whiteBG};
+  backdrop-filter: blur(4px);
+
+  border-bottom: ${({ theme }) => theme.borders.thin};
 `;
 
 export const AddContactButton = styled.button`
@@ -80,6 +87,7 @@ export const Backdrop = styled.div`
 
 export const SectionTitle = styled.h2`
   margin: ${({ theme }) => theme.space[0]};
+  margin-top: ${({ theme }) => theme.sizes.headerH};
   margin-bottom: ${({ theme }) => theme.space[5]};
 
   font-size: ${({ theme }) => theme.fontSizes.xl};
