@@ -6,7 +6,7 @@ export const theme = Object.freeze({
     darkText: '#333',
     lightText: '#edf1f2',
     whiteText: '#fff',
-    placeholder: '#667786',
+    placeholder: '#8697a6',
 
     darkBG: '#e6ecf0',
     lightBG: '#f5f8fa',
@@ -18,9 +18,6 @@ export const theme = Object.freeze({
     backdropBG: '#5e5e5ea0',
 
     lightTransparentBG: '#eeeeee80',
-
-    filterIcon: '#888',
-    filterIconHovered: '#212121',
 
     tableHead: '#11c2bc',
     sortButtonBG: 'transparent',
@@ -100,9 +97,8 @@ export const theme = Object.freeze({
     success: '2px solid #1f941c',
     error: '2px solid #c40a0a',
 
-    light: '2px solid #667786',
-    generic: '1px solid #888',
-    genericHovered: '1px solid #212121',
+    light: '2px solid #8697a6',
+    dark: '2px solid #212121',
   },
 
   radii: {

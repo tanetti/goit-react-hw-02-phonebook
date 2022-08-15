@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { Notify } from 'notiflix';
 import { GlobalStyles } from 'components/GlobalStyles/GlobalStyles';
 import { theme } from 'constants/theme';
-import { Box } from 'components/Shared';
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { Section, Container } from 'components/Shared';
 import {
@@ -16,6 +15,7 @@ import {
 import { ContactFilter } from 'components/ContactFilter/ContactFilter';
 import { AddContactForm } from 'components/AddContactForm/AddContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
+import { DeleteContactPrompt } from 'components/DeleteContactPrompt/DeleteContactPrompt';
 
 Notify.init({
   position: 'right-bottom',
@@ -43,59 +43,82 @@ export class App extends Component {
     ],
     filter: '',
 
-    shouldAddFormRender: false,
+    currentShown: null,
+    shouldBackdropShown: false,
     shouldAddFormShown: false,
+    shouldDeletePromptShown: false,
   };
 
-  toggleAddForm = () => {
-    this.setState(prevState => {
-      if (!prevState.shouldAddFormRender) {
-        setTimeout(this.showAddForm, 0);
-        onkeydown = this.onEscPress;
-        return { shouldAddFormRender: true };
-      }
+  openSplash = ({ currentTarget }) => {
+    const target = currentTarget.dataset.target;
 
-      onkeydown = prevState.shouldAddFormShown ? null : this.onEscPress;
+    if (!target) return;
 
-      return { shouldAddFormShown: !prevState.shouldAddFormShown };
+    onkeydown = this.onEscPress;
+
+    this.toggleAriaExpanded(currentTarget);
+
+    this.setState({
+      currentShown: currentTarget,
+      shouldBackdropShown: true,
+      [`should${target}Shown`]: true,
     });
   };
 
-  showAddForm = () => {
-    this.setState({ shouldAddFormShown: true });
+  closeSplash = () => {
+    onkeydown = null;
+
+    this.toggleAriaExpanded(this.state.currentShown);
+
+    this.setState({
+      currentShown: null,
+      shouldBackdropShown: false,
+      shouldAddFormShown: false,
+      shouldDeletePromptShown: false,
+    });
+  };
+
+  toggleAriaExpanded = target => {
+    if (target.ariaExpanded === 'false') return (target.ariaExpanded = true);
+    if (target.ariaExpanded === 'true') target.ariaExpanded = false;
   };
 
   onBackdropClick = ({ currentTarget, target }) =>
-    currentTarget === target && this.toggleAddForm();
+    currentTarget === target && this.closeSplash();
 
   onEscPress = ({ code }) => {
     if (code !== 'Escape') return;
 
-    this.toggleAddForm();
+    this.closeSplash();
   };
 
-  onNewContactAdd = newContact => {
+  addNewContact = newContact => {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
 
-    this.toggleAddForm();
+    this.closeSplash();
     Notify.success(`New contact was successfully added`);
   };
 
-  onContactDelete = ({ currentTarget: { value: contactID } }) => {
+  deleteContact = () => {
     this.setState(prevState => {
       const cuttedContacts = [];
 
       prevState.contacts.forEach(
-        contact => contact.id !== contactID && cuttedContacts.push(contact)
+        contact =>
+          contact.id !== prevState.currentShown.value &&
+          cuttedContacts.push(contact)
       );
 
       return { contacts: cuttedContacts };
     });
+
+    this.closeSplash();
+    Notify.success(`Contact was successfully deleted`);
   };
 
-  onFilterChange = filterValue => {
+  changeFilterValue = filterValue => {
     this.setState({ filter: filterValue });
   };
 
@@ -106,49 +129,54 @@ export class App extends Component {
 
         <header>
           <HeaderContainer>
-            <ContactFilter onFilterChange={this.onFilterChange} />
+            <ContactFilter onFilterChange={this.changeFilterValue} />
             <AddContactButton
               type="button"
               aria-label="Add new contact"
-              aria-controls="contact-form"
+              aria-controls="AddForm"
               aria-expanded={false}
-              onClick={this.toggleAddForm}
+              data-target="AddForm"
+              onClick={this.openSplash}
             >
               <AddContactIcon size={theme.sizes.addContactIcon} />
               <AddContactTitle>Add contact</AddContactTitle>
             </AddContactButton>
           </HeaderContainer>
 
-          {this.state.shouldAddFormRender && (
-            <Backdrop
+          <Backdrop
+            shouldShown={this.state.shouldBackdropShown}
+            onClick={this.onBackdropClick}
+          >
+            <AddContactForm
+              id="AddForm"
+              contacts={this.state.contacts}
               shouldShown={this.state.shouldAddFormShown}
-              onClick={this.onBackdropClick}
-            >
-              <AddContactForm
-                id="contact-form"
-                contacts={this.state.contacts}
-                shouldShown={this.state.shouldAddFormShown}
-                onNewContactAdd={this.onNewContactAdd}
-                onCancel={this.toggleAddForm}
-              />
-            </Backdrop>
-          )}
+              onNewContactAdd={this.addNewContact}
+              onClose={this.closeSplash}
+            />
+            <DeleteContactPrompt
+              id="DeletePrompt"
+              contacts={this.state.contacts}
+              delettingTarget={this.state.currentShown}
+              shouldShown={this.state.shouldDeletePromptShown}
+              onContactDelete={this.deleteContact}
+              onClose={this.closeSplash}
+            />
+          </Backdrop>
         </header>
 
         <main>
           <PageTitle title="My awesome phonebook" />
-          <Box pt={theme.sizes.headerH}>
-            <Section>
-              <Container>
-                <SectionTitle>Phonebook</SectionTitle>
-                <ContactsList
-                  contacts={this.state.contacts}
-                  filter={this.state.filter}
-                  onContactDelete={this.onContactDelete}
-                />
-              </Container>
-            </Section>
-          </Box>
+          <Section>
+            <Container>
+              <SectionTitle>Phonebook</SectionTitle>
+              <ContactsList
+                contacts={this.state.contacts}
+                filter={this.state.filter}
+                onContactDelete={this.openSplash}
+              />
+            </Container>
+          </Section>
         </main>
       </>
     );

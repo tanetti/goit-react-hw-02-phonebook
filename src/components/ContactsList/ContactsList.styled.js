@@ -12,6 +12,7 @@ import {
 export const ContactsTableBox = styled.div`
   min-width: ${({ theme }) => theme.sizes.contactsTableMin};
   width: 100%;
+  height: 100%;
   max-width: ${({ theme }) => theme.sizes.contactsTableMax};
   margin-left: auto;
   margin-right: auto;
@@ -21,7 +22,7 @@ export const ContactsTableBox = styled.div`
 
   box-shadow: ${({ theme }) => theme.shadows.generic};
 
-  overflow: hidden;
+  overflow-y: auto;
 `;
 
 export const ContactsTable = styled.table`

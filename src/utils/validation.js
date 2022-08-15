@@ -36,8 +36,8 @@ export const createNewValidationSchema = contacts => {
     number: Yup.string()
       .trim()
       .matches(NUMBER_VALIDATION_REG_EX, 'Invalid phone number format')
-      .min(8, 'Minimal lenght - 8')
-      .max(20, 'Maximal lenght - 20')
+      .min(8, 'Invalid phone number format')
+      .max(20, 'Invalid phone number format')
       .required('Please enter phone number'),
   });
 };

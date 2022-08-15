@@ -150,6 +150,9 @@ export class ContactsList extends Component {
                       type="button"
                       value={id}
                       aria-label={`Delete contact ${name}`}
+                      aria-controls="DeletePrompt"
+                      aria-expanded={false}
+                      data-target="DeletePrompt"
                       onClick={onContactDelete}
                     >
                       <DeleteIcon size={deleteButtonIconSize} />

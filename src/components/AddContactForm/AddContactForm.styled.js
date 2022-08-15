@@ -3,6 +3,10 @@ import { Form, Field } from 'formik';
 import { BiUser, BiPhone } from 'react-icons/bi';
 
 export const FormContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
   min-width: ${({ theme }) => theme.sizes.addFormMin};
   width: 100%;
   max-width: ${({ theme }) => theme.sizes.addFormMax};
@@ -15,7 +19,10 @@ export const FormContainer = styled.div`
 
   opacity: ${({ shouldShown }) => (shouldShown ? 1 : 0)};
 
-  transform: ${({ shouldShown }) => (shouldShown ? 'scale(1)' : 'scale(2)')};
+  pointer-events: ${({ shouldShown }) => (shouldShown ? 'initial' : 'none')};
+
+  transform: translate(-50%, -50%)
+    scale(${({ shouldShown }) => (shouldShown ? 1 : 2)});
 
   transition: ${({ theme }) => theme.transitions.opacity},
     ${({ theme }) => theme.transitions.transform};
@@ -52,10 +59,18 @@ export const FormField = styled(Field)`
 
   outline: transparent;
 
-  transition: ${({ theme }) => theme.transitions.borderColor};
+  transition: ${({ theme }) => theme.transitions.borderColor},
+    ${({ theme }) => theme.transitions.backgroundColor};
 
-  &:hover,
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.darkBG};
+
+    border-bottom: ${({ theme }) => theme.borders.dark};
+  }
+
   &:focus {
+    background-color: ${({ theme }) => theme.colors.darkBG};
+
     border-bottom: ${({ theme }) => theme.borders.accent};
   }
 `;
@@ -82,7 +97,7 @@ export const FormFieldLabel = styled.label`
     font-size: ${({ theme }) => theme.fontSizes.xs};
     font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 
-    transform: translateY(-40px) translateX(-62px);
+    transform: translateY(-39px) translateX(-62px);
   }
 `;
 
@@ -105,16 +120,8 @@ export const FormFieldContainer = styled.div`
 
   ${FormField} {
     border-color: ${({ isError, isFilled, theme }) => {
-      if (isError) return theme.colors.error;
+      if (isError && isFilled) return theme.colors.error;
       if (isFilled) return theme.colors.success;
-    }};
-  }
-
-  ${FormFieldLabel} {
-    color: ${({ isError, isFilled, theme }) => {
-      if (!isError && isFilled) return theme.colors.success;
-
-      return theme.colors.placeholder;
     }};
   }
 `;
@@ -223,7 +230,7 @@ export const ErrorMessageField = styled.div`
 
   color: ${({ theme }) => theme.colors.error};
 
-  opacity: ${({ isError }) => (isError ? 1 : 0)};
+  opacity: ${({ isError, isFilled }) => (isError && isFilled ? 1 : 0)};
 
   transition: ${({ theme }) => theme.transitions.opacity};
 `;

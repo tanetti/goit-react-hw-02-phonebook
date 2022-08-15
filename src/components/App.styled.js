@@ -2,15 +2,10 @@ import styled from 'styled-components';
 import { BiUserPlus } from 'react-icons/bi';
 
 export const HeaderContainer = styled.header`
-  position: fixed;
-  z-index: 100;
-
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 100vw;
-  height: ${({ theme }) => theme.sizes.headerH};
   padding: ${({ theme }) => theme.space[4]};
 
   background-color: ${({ theme }) => theme.colors.whiteBG};
@@ -66,11 +61,7 @@ export const Backdrop = styled.div`
   left: 0;
   z-index: 100;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
+  width: 100vw;
   height: 100%;
   padding: ${({ theme }) => theme.space[4]};
 

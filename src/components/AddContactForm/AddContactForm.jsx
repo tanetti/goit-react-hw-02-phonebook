@@ -22,7 +22,7 @@ export const AddContactForm = ({
   contacts,
   shouldShown,
   onNewContactAdd,
-  onCancel,
+  onClose,
 }) => {
   const validationSchema = createNewValidationSchema(contacts);
 
@@ -42,7 +42,7 @@ export const AddContactForm = ({
         onNewContactSubmit(validationSchema.cast(values), actions)
       }
     >
-      {({ values, errors, touched }) => (
+      {({ values, errors, resetForm }) => (
         <FormContainer shouldShown={shouldShown}>
           <FormTitle>Add new contact</FormTitle>
           <StyledForm autoComplete="off">
@@ -57,7 +57,7 @@ export const AddContactForm = ({
               <FormFieldLabel htmlFor="contact-name">
                 Contact name
               </FormFieldLabel>
-              <ErrorMessageField isError={errors.name}>
+              <ErrorMessageField isError={errors.name} isFilled={values.name}>
                 {errors.name}
               </ErrorMessageField>
             </FormFieldContainer>
@@ -75,12 +75,21 @@ export const AddContactForm = ({
               <FormFieldLabel htmlFor="contact-number">
                 Phone number
               </FormFieldLabel>
-              <ErrorMessageField isError={errors.number}>
+              <ErrorMessageField
+                isError={errors.number}
+                isFilled={values.number}
+              >
                 {errors.number}
               </ErrorMessageField>
             </FormFieldContainer>
             <ButtonContainer>
-              <CancelButton type="button" onClick={onCancel}>
+              <CancelButton
+                type="button"
+                onClick={() => {
+                  resetForm();
+                  onClose();
+                }}
+              >
                 Cancel
               </CancelButton>
               <AddButton
@@ -103,5 +112,5 @@ AddContactForm.propTypes = {
   contacts: PropTypes.array.isRequired,
   shouldShown: PropTypes.bool.isRequired,
   onNewContactAdd: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };

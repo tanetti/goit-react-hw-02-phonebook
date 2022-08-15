@@ -50,7 +50,7 @@ export const FilterField = styled.input`
   &:hover {
     background-color: ${({ theme }) => theme.colors.lightBG};
 
-    border: ${({ theme }) => theme.borders.accent};
+    border: ${({ theme }) => theme.borders.light};
   }
 
   &:focus {
