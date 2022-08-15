@@ -18,7 +18,7 @@ export const AddContactButton = styled.button`
 
   flex-shrink: 0;
 
-  min-width: ${({ theme }) => theme.sizes.addContactMinW};
+  min-width: ${({ theme }) => theme.sizes.buttonMinW};
   height: ${({ theme }) => theme.sizes.filterFieldH};
   padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
 

@@ -49,7 +49,7 @@ export class App extends Component {
     shouldDeletePromptShown: false,
   };
 
-  openSplash = ({ currentTarget }) => {
+  openModal = ({ currentTarget }) => {
     const target = currentTarget.dataset.target;
 
     if (!target) return;
@@ -61,11 +61,16 @@ export class App extends Component {
     this.setState({
       currentShown: currentTarget,
       shouldBackdropShown: true,
-      [`should${target}Shown`]: true,
     });
+
+    setTimeout(() => {
+      this.setState({
+        [`should${target}Shown`]: true,
+      });
+    }, 0);
   };
 
-  closeSplash = () => {
+  closeModal = () => {
     onkeydown = null;
 
     this.toggleAriaExpanded(this.state.currentShown);
@@ -84,12 +89,12 @@ export class App extends Component {
   };
 
   onBackdropClick = ({ currentTarget, target }) =>
-    currentTarget === target && this.closeSplash();
+    currentTarget === target && this.closeModal();
 
   onEscPress = ({ code }) => {
     if (code !== 'Escape') return;
 
-    this.closeSplash();
+    this.closeModal();
   };
 
   addNewContact = newContact => {
@@ -97,7 +102,7 @@ export class App extends Component {
       contacts: [...prevState.contacts, newContact],
     }));
 
-    this.closeSplash();
+    this.closeModal();
     Notify.success(`New contact was successfully added`);
   };
 
@@ -114,7 +119,7 @@ export class App extends Component {
       return { contacts: cuttedContacts };
     });
 
-    this.closeSplash();
+    this.closeModal();
     Notify.success(`Contact was successfully deleted`);
   };
 
@@ -136,7 +141,7 @@ export class App extends Component {
               aria-controls="AddForm"
               aria-expanded={false}
               data-target="AddForm"
-              onClick={this.openSplash}
+              onClick={this.openModal}
             >
               <AddContactIcon size={theme.sizes.addContactIcon} />
               <AddContactTitle>Add contact</AddContactTitle>
@@ -152,7 +157,7 @@ export class App extends Component {
               contacts={this.state.contacts}
               shouldShown={this.state.shouldAddFormShown}
               onNewContactAdd={this.addNewContact}
-              onClose={this.closeSplash}
+              onClose={this.closeModal}
             />
             <DeleteContactPrompt
               id="DeletePrompt"
@@ -160,7 +165,7 @@ export class App extends Component {
               delettingTarget={this.state.currentShown}
               shouldShown={this.state.shouldDeletePromptShown}
               onContactDelete={this.deleteContact}
-              onClose={this.closeSplash}
+              onClose={this.closeModal}
             />
           </Backdrop>
         </header>
@@ -173,7 +178,7 @@ export class App extends Component {
               <ContactsList
                 contacts={this.state.contacts}
                 filter={this.state.filter}
-                onContactDelete={this.openSplash}
+                onContactDelete={this.openModal}
               />
             </Container>
           </Section>

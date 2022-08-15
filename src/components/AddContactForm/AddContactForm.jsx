@@ -4,8 +4,12 @@ import { nanoid } from 'nanoid';
 import { createNewValidationSchema } from 'utils';
 import { theme } from 'constants/theme';
 import {
-  FormContainer,
-  FormTitle,
+  ModalContainer,
+  ModalTitle,
+  SafeButton,
+  UnsafeButton,
+} from 'components/Shared';
+import {
   StyledForm,
   FormFieldContainer,
   FormField,
@@ -13,8 +17,6 @@ import {
   UserFieldIcon,
   NumberFieldIcon,
   ButtonContainer,
-  CancelButton,
-  AddButton,
   ErrorMessageField,
 } from './AddContactForm.styled';
 
@@ -43,8 +45,8 @@ export const AddContactForm = ({
       }
     >
       {({ values, errors, resetForm }) => (
-        <FormContainer shouldShown={shouldShown}>
-          <FormTitle>Add new contact</FormTitle>
+        <ModalContainer shouldShown={shouldShown}>
+          <ModalTitle>Add new contact</ModalTitle>
           <StyledForm autoComplete="off">
             <FormFieldContainer isError={errors.name} isFilled={values.name}>
               <FormField
@@ -83,7 +85,7 @@ export const AddContactForm = ({
               </ErrorMessageField>
             </FormFieldContainer>
             <ButtonContainer>
-              <CancelButton
+              <UnsafeButton
                 type="button"
                 onClick={() => {
                   resetForm();
@@ -91,18 +93,18 @@ export const AddContactForm = ({
                 }}
               >
                 Cancel
-              </CancelButton>
-              <AddButton
+              </UnsafeButton>
+              <SafeButton
                 type="submit"
                 disabled={
                   !values.name || !values.number || errors.name || errors.number
                 }
               >
                 Add contact
-              </AddButton>
+              </SafeButton>
             </ButtonContainer>
           </StyledForm>
-        </FormContainer>
+        </ModalContainer>
       )}
     </Formik>
   );

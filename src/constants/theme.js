@@ -47,7 +47,8 @@ export const theme = Object.freeze({
     filterFieldH: '40px',
     filterFieldIcon: '24px',
 
-    addContactMinW: '80px',
+    buttonMinW: '80px',
+    buttonH: '40px',
     addContactIcon: '30px',
 
     contactsTableMin: '290px',
@@ -64,13 +65,15 @@ export const theme = Object.freeze({
 
     noResultIcon: '26px',
 
-    addFormMin: '300px',
-    addFormMax: '400px',
+    modalContainerMin: '300px',
+    modalContainerMax: '400px',
 
     addFormFieldW: '100%',
     addFormFieldH: '46px',
 
     addFormFieldIcon: '30px',
+
+    delettingContactIcon: '70px',
   },
 
   fontSizes: {

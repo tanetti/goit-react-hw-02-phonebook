@@ -1,27 +1,31 @@
 import styled from 'styled-components';
+import { BiUserX } from 'react-icons/bi';
 
-export const PromptContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
+export const DelettingCaptionContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  min-width: ${({ theme }) => theme.sizes.addFormMin};
-  width: 100%;
-  max-width: ${({ theme }) => theme.sizes.addFormMax};
-  padding: ${({ theme }) => theme.space[5]};
+  color: ${({ theme }) => theme.colors.error};
 
-  background-color: ${({ theme }) => theme.colors.whiteBG};
+  margin-bottom: ${({ theme }) => theme.space[5]};
+`;
 
-  border: ${({ theme }) => theme.borders.accentTransparent};
-  border-radius: ${({ theme }) => theme.radii.generic};
+export const DelettingContact = styled.p`
+  margin: 0;
 
-  opacity: ${({ shouldShown }) => (shouldShown ? 1 : 0)};
+  font-size: ${({ theme }) => theme.fontSizes.l};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+`;
 
-  pointer-events: ${({ shouldShown }) => (shouldShown ? 'initial' : 'none')};
+export const DelettingContactIcon = styled(BiUserX)`
+  fill: currentColor;
 
-  transform: translate(-50%, -50%)
-    scale(${({ shouldShown }) => (shouldShown ? 1 : 2)});
+  margin-right: ${({ theme }) => theme.space[4]};
+`;
 
-  transition: ${({ theme }) => theme.transitions.opacity},
-    ${({ theme }) => theme.transitions.transform};
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

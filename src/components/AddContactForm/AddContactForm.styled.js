@@ -2,41 +2,6 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { BiUser, BiPhone } from 'react-icons/bi';
 
-export const FormContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  min-width: ${({ theme }) => theme.sizes.addFormMin};
-  width: 100%;
-  max-width: ${({ theme }) => theme.sizes.addFormMax};
-  padding: ${({ theme }) => theme.space[5]};
-
-  background-color: ${({ theme }) => theme.colors.whiteBG};
-
-  border: ${({ theme }) => theme.borders.accentTransparent};
-  border-radius: ${({ theme }) => theme.radii.generic};
-
-  opacity: ${({ shouldShown }) => (shouldShown ? 1 : 0)};
-
-  pointer-events: ${({ shouldShown }) => (shouldShown ? 'initial' : 'none')};
-
-  transform: translate(-50%, -50%)
-    scale(${({ shouldShown }) => (shouldShown ? 1 : 2)});
-
-  transition: ${({ theme }) => theme.transitions.opacity},
-    ${({ theme }) => theme.transitions.transform};
-`;
-
-export const FormTitle = styled.h2`
-  margin: ${({ theme }) => theme.space[0]};
-  margin-bottom: ${({ theme }) => theme.space[5]};
-
-  font-size: ${({ theme }) => theme.fontSizes.l};
-  text-align: center;
-  text-transform: uppercase;
-`;
-
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
@@ -150,70 +115,6 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const CancelButton = styled.button`
-  display: block;
-
-  min-width: ${({ theme }) => theme.sizes.addContactMinW};
-  height: ${({ theme }) => theme.sizes.filterFieldH};
-  padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
-
-  color: ${({ theme }) => theme.colors.mainAccent};
-  background-color: ${({ theme }) => theme.colors.whiteBG};
-
-  border: ${({ theme }) => theme.borders.accent};
-  border-radius: ${({ theme }) => theme.radii.roundSide};
-
-  cursor: pointer;
-
-  transition: ${({ theme }) => theme.transitions.color},
-    ${({ theme }) => theme.transitions.borderColor};
-
-  &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.colors.error};
-
-    border: ${({ theme }) => theme.borders.error};
-  }
-`;
-
-export const AddButton = styled.button`
-  display: block;
-
-  min-width: ${({ theme }) => theme.sizes.addContactMinW};
-  height: ${({ theme }) => theme.sizes.filterFieldH};
-  padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
-
-  color: ${({ theme }) => theme.colors.whiteText};
-  background-color: ${({ theme }) => theme.colors.mainAccent};
-
-  border: ${({ theme }) => theme.borders.accent};
-  border-radius: ${({ theme }) => theme.radii.roundSide};
-
-  cursor: pointer;
-
-  transition: ${({ theme }) => theme.transitions.backgroundColor},
-    ${({ theme }) => theme.transitions.borderColor};
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.colors.darkBG};
-
-    border: ${({ theme }) => theme.borders.accentTransparent};
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.darkBG};
-
-      border: ${({ theme }) => theme.borders.accentTransparent};
-    }
-  }
-
-  &:hover,
-  &:focus {
-    background-color: ${({ theme }) => theme.colors.success};
-
-    border: ${({ theme }) => theme.borders.success};
-  }
 `;
 
 export const ErrorMessageField = styled.div`
