@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
-import { createNewValidationSchema } from 'utils';
+import { createNewValidationSchema, truncateInnerWhitespaces } from 'utils';
 import { theme } from 'constants/theme';
 import {
   ModalContainer,
@@ -29,7 +29,11 @@ export const AddContactForm = ({
   const validationSchema = createNewValidationSchema(contacts);
 
   const onNewContactSubmit = (newContact, actions) => {
-    onNewContactAdd({ id: nanoid(14), ...newContact });
+    onNewContactAdd({
+      id: nanoid(14),
+      name: truncateInnerWhitespaces(newContact.name),
+      number: truncateInnerWhitespaces(newContact.number),
+    });
     actions.resetForm();
   };
 

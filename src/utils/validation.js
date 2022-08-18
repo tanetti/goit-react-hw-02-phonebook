@@ -2,7 +2,8 @@ import * as Yup from 'yup';
 import {
   NAME_VALIDATION_REG_EX,
   NUMBER_VALIDATION_REG_EX,
-} from 'constants/validationRegEx';
+} from 'constants/validationRegExp';
+import { truncateInnerWhitespaces } from 'utils';
 
 Yup.addMethod(
   Yup.string,
@@ -11,7 +12,7 @@ Yup.addMethod(
     return this.test(`not-One-Of-In-Lowercase`, errorMessage, function (value) {
       const { path, createError } = this;
 
-      if (paramArr.includes(value?.toLowerCase())) {
+      if (paramArr.includes(truncateInnerWhitespaces(value?.toLowerCase()))) {
         return createError({ path, message: errorMessage });
       }
       return true;

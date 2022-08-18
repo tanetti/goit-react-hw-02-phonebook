@@ -1,3 +1,5 @@
+export const truncateInnerWhitespaces = value => value.replace(/\s\s+/g, ' ');
+
 export const normalizeNumber = number =>
   number
     .split('')
@@ -14,9 +16,9 @@ export const normalizeFilterValue = filterValue => {
     prenormalizedFilterValue[0] === '(' ||
     prenormalizedFilterValue[0] === '-'
   )
-    return normalizeNumber(prenormalizedFilterValue);
+    return truncateInnerWhitespaces(normalizeNumber(prenormalizedFilterValue));
 
-  return prenormalizedFilterValue;
+  return truncateInnerWhitespaces(prenormalizedFilterValue);
 };
 
 export const normalizeNumberForCallLink = number =>
